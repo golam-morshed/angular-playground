@@ -1,0 +1,137 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="text-center mb-0">User Registration Form</h3>
+        </div>
+        <div class="card-body">
+          <form #registrationForm="ngForm">
+            
+            <!-- Name Field -->
+            <div class="mb-3">
+              <label for="name" class="form-label">Full Name *</label>
+              <input 
+                type="text" 
+                class="form-control" 
+                id="name" 
+                name="name"
+                [(ngModel)]="user.name"
+                #nameField="ngModel"
+                required
+                minlength="2"
+                [class.is-invalid]="nameField.invalid && nameField.touched"
+              >
+              <div class="invalid-feedback" *ngIf="nameField.invalid && nameField.touched">
+                <div *ngIf="nameField.errors?.['required']">Name is required</div>
+                <div *ngIf="nameField.errors?.['minlength']">Name must be at least 2 characters long</div>
+              </div>
+            </div>
+
+            <!-- Email Field -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Email Address *</label>
+              <input 
+                type="email" 
+                class="form-control" 
+                id="email" 
+                name="email"
+                [(ngModel)]="user.email"
+                #emailField="ngModel"
+                required
+                email
+                [class.is-invalid]="emailField.invalid && emailField.touched"
+              >
+              <div class="invalid-feedback" *ngIf="emailField.invalid && emailField.touched">
+                <div *ngIf="emailField.errors?.['required']">Email is required</div>
+                <div *ngIf="emailField.errors?.['email']">Please enter a valid email address</div>
+              </div>
+            </div>
+
+            <!-- Password Field -->
+            <div class="mb-3">
+              <label for="password" class="form-label">Password *</label>
+              <input 
+                type="password" 
+                class="form-control" 
+                id="password" 
+                name="password"
+                [(ngModel)]="user.password"
+                #passwordField="ngModel"
+                required
+                minlength="6"
+                (blur)="onPasswordChange(user.password, user.confirmPassword)"
+                (change)="onPasswordChange(user.password, user.confirmPassword)"
+                [class.is-invalid]="(passwordField.invalid || passwordDontMatch) && passwordField.touched"
+              >
+              <div class="invalid-feedback" *ngIf="(passwordField.invalid || passwordDontMatch) && passwordField.touched">
+                <div *ngIf="passwordField.errors?.['required']">Password is required</div>
+                <div *ngIf="passwordField.errors?.['minlength']">Password must be at least 6 characters long</div>
+                <div *ngIf="passwordDontMatch && !passwordField.invalid">Passwords don't match</div>
+              </div>
+            </div>
+
+            <!-- Confirm Password Field -->
+            <div class="mb-3">
+              <label for="confirmPassword" class="form-label">Confirm Password *</label>
+              <input 
+                type="password" 
+                class="form-control" 
+                id="confirmPassword" 
+                name="confirmPassword"
+                [(ngModel)]="user.confirmPassword"
+                #confirmPasswordField="ngModel"
+                required
+                (blur)="onPasswordChange(user.password, user.confirmPassword)"
+                (change)="onPasswordChange(user.password, user.confirmPassword)"
+                [class.is-invalid]="(confirmPasswordField.invalid || passwordDontMatch) && confirmPasswordField.touched"
+              >
+              <div class="invalid-feedback" *ngIf="(confirmPasswordField.invalid || passwordDontMatch) && confirmPasswordField.touched">
+                <div *ngIf="confirmPasswordField.errors?.['required']">Please confirm your password</div>
+                <div *ngIf="passwordDontMatch && !confirmPasswordField.invalid">Passwords don't match</div>
+              </div>
+            </div>
+
+            <!-- Phone Field (Optional) -->
+            <div class="mb-3">
+              <label for="phone" class="form-label">Phone Number</label>
+              <input 
+                type="tel" 
+                class="form-control" 
+                id="phone" 
+                name="phone"
+                [(ngModel)]="user.phone"
+                #phoneField="ngModel"
+                pattern="[0-9]{10,15}"
+              >
+              <div class="invalid-feedback" *ngIf="phoneField.invalid && phoneField.touched">
+                <div *ngIf="phoneField.errors?.['pattern']">Please enter a valid phone number (10-15 digits)</div>
+              </div>
+            </div>
+
+            <!-- Address Field (Optional) -->
+            <div class="mb-3">
+              <label for="address" class="form-label">Address</label>
+              <textarea 
+                class="form-control" 
+                id="address" 
+                name="address"
+                [(ngModel)]="user.address"
+                rows="3"
+                placeholder="Enter your address (optional)"
+              ></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid">
+              <button 
+                type="submit" 
+                class="btn btn-primary btn-lg"
+                [disabled]="registrationForm.invalid || passwordDontMatch"
+              >
+                Register
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>

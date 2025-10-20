@@ -1,0 +1,14 @@
+// Custom styling for disabled submit button
+.btn-primary:disabled {
+  background-color: #6c757d !important;
+  border-color: #6c757d !important;
+  color: #fff !important;
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.btn-primary:disabled:hover {
+  background-color: #6c757d !important;
+  border-color: #6c757d !important;
+  color: #fff !important;
+}
