@@ -48,4 +48,11 @@ export class EmployeeService {
     }
     return false;
   }
+
+  // unique name custom validator
+  isNameUnique(name: string, excludeId?:number):boolean {
+    return !this.employees.some(employee => 
+      employee.name.toLocaleLowerCase().trim() === name.toLowerCase().trim() && employee.id !== excludeId
+    )
+  }
 }

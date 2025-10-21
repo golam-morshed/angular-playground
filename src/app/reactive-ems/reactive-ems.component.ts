@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators, FormControl, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Employee } from './models/employee.model';
 import { EmployeeService } from './services/employee.service';
 
@@ -27,7 +27,7 @@ export class ReactiveEmsComponent implements OnInit {
 
   initializeForm(): void {
     this.employeeForm = this.fb.group({
-      name: ['', [Validators.required]],
+      name: ['', [Validators.required, this.uniqueNameValidator.bind(this)]],
       email: ['', [Validators.required, Validators.email]],
       position: ['', [Validators.required]],
       department: ['', [Validators.required]],
@@ -40,6 +40,20 @@ export class ReactiveEmsComponent implements OnInit {
         this.createSkillControl('')
       ])
     });
+  }
+
+   // Custom validator for unique name
+   uniqueNameValidator(control: AbstractControl): ValidationErrors | null {
+    if (!control.value) {
+      return null; 
+    }
+    
+    const name = control.value.trim();
+    if (!this.employeeService.isNameUnique(name, this.editingEmployeeId || undefined)) {
+      return { nameNotUnique: true };
+    }
+    
+    return null;
   }
 
   loadEmployees(): void {
@@ -73,6 +87,7 @@ export class ReactiveEmsComponent implements OnInit {
 
   onSubmit(): void {
     if (this.employeeForm.invalid) {
+      this.markFormGroupTouched();
       return;
     }
 
@@ -118,6 +133,8 @@ export class ReactiveEmsComponent implements OnInit {
     
     this.isEditMode = false;
     this.editingEmployeeId = null;
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   deleteEmployee(id: number): void {
@@ -163,5 +180,36 @@ export class ReactiveEmsComponent implements OnInit {
 
   cancelEdit(): void {
     this.resetForm();
+  }
+
+  // Helper method to mark all form controls as touched
+  markFormGroupTouched(): void {
+    Object.keys(this.employeeForm.controls).forEach(key => {
+      const control = this.employeeForm.get(key);
+      control?.markAsTouched();
+      
+      if (control instanceof FormGroup) {
+        Object.keys(control.controls).forEach(nestedKey => {
+          control.get(nestedKey)?.markAsTouched();
+        });
+      }
+    });
+  }
+
+  // Helper methods for template validation
+  isFieldInvalid(fieldName: string): boolean {
+    const field = this.employeeForm.get(fieldName);
+    return Boolean(field && field.invalid && field.touched);
+  }
+
+  getFieldError(fieldName: string): string {
+    const field = this.employeeForm.get(fieldName);
+    console.log("field", field)
+    if (field && field.errors && field.touched) {
+      if (field.errors['required']) return `${fieldName} is required`;
+      if (field.errors['email']) return 'Please enter a valid email address';
+      if (field.errors['nameNotUnique']) return 'This name already exists in the employee list';
+    }
+    return '';
   }
 }

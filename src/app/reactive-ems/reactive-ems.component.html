@@ -15,12 +15,13 @@
               <input
                 type="text"
                 class="form-control"
+                [class.is-invalid]="isFieldInvalid('name')"
                 id="name"
                 formControlName="name"
                 placeholder="Enter employee name"
               >
-              <div class="invalid-feedback" *ngIf="employeeForm.get('name')?.invalid && employeeForm.get('name')?.touched">
-                Name is required
+              <div class="invalid-feedback" *ngIf="isFieldInvalid('name')">
+                {{ getFieldError('name') }}
               </div>
             </div>
 
@@ -30,13 +31,13 @@
               <input
                 type="email"
                 class="form-control"
+                [class.is-invalid]="isFieldInvalid('email')"
                 id="email"
                 formControlName="email"
                 placeholder="Enter email address"
               >
-              <div class="invalid-feedback" *ngIf="employeeForm.get('email')?.invalid && employeeForm.get('email')?.touched">
-                <div *ngIf="employeeForm.get('email')?.errors?.['required']">Email is required</div>
-                <div *ngIf="employeeForm.get('email')?.errors?.['email']">Please enter a valid email</div>
+              <div class="invalid-feedback" *ngIf="isFieldInvalid('email')">
+                {{ getFieldError('email') }}
               </div>
             </div>
 
@@ -46,12 +47,13 @@
               <input
                 type="text"
                 class="form-control"
+                [class.is-invalid]="isFieldInvalid('position')"
                 id="position"
                 formControlName="position"
                 placeholder="Enter position"
               >
-              <div class="invalid-feedback" *ngIf="employeeForm.get('position')?.invalid && employeeForm.get('position')?.touched">
-                Position is required
+              <div class="invalid-feedback" *ngIf="isFieldInvalid('position')">
+                {{ getFieldError('position') }}
               </div>
             </div>
 
@@ -61,12 +63,13 @@
               <input
                 type="text"
                 class="form-control"
+                [class.is-invalid]="isFieldInvalid('department')"
                 id="department"
                 formControlName="department"
                 placeholder="Enter department"
               >
-              <div class="invalid-feedback" *ngIf="employeeForm.get('department')?.invalid && employeeForm.get('department')?.touched">
-                Department is required
+              <div class="invalid-feedback" *ngIf="isFieldInvalid('department')">
+                {{ getFieldError('department') }}
               </div>
             </div>
 
