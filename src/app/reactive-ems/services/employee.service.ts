@@ -10,9 +10,6 @@ export class EmployeeService {
 
   constructor() { }
 
-  /**
-   * Add a new employee
-   */
   addEmployee(employee: Omit<Employee, 'id'>): Employee {
     const newEmployee: Employee = {
       ...employee,
@@ -22,23 +19,14 @@ export class EmployeeService {
     return newEmployee;
   }
 
-  /**
-   * Get all employees
-   */
   getEmployees(): Employee[] {
     return [...this.employees];
   }
 
-  /**
-   * Get employee by ID
-   */
   getEmployeeById(id: number): Employee | undefined {
     return this.employees.find(emp => emp.id === id);
   }
 
-  /**
-   * Update an employee
-   */
   updateEmployee(id: number, employee: Omit<Employee, 'id'>): Employee | undefined {
     const index = this.employees.findIndex(emp => emp.id === id);
     if (index !== -1) {
@@ -52,9 +40,6 @@ export class EmployeeService {
     return undefined;
   }
 
-  /**
-   * Delete an employee
-   */
   deleteEmployee(id: number): boolean {
     const index = this.employees.findIndex(emp => emp.id === id);
     if (index !== -1) {

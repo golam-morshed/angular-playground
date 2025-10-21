@@ -11,6 +11,9 @@ import { EmployeeService } from './services/employee.service';
 export class ReactiveEmsComponent implements OnInit {
   employeeForm!: FormGroup;
   employees: Employee[] = [];
+  
+  isEditMode = false;
+  editingEmployeeId: number | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -22,9 +25,6 @@ export class ReactiveEmsComponent implements OnInit {
     this.loadEmployees();
   }
 
-  /**
-   * Initialize the form with FormBuilder
-   */
   initializeForm(): void {
     this.employeeForm = this.fb.group({
       name: ['', [Validators.required]],
@@ -42,55 +42,35 @@ export class ReactiveEmsComponent implements OnInit {
     });
   }
 
-  /**
-   * Create a single skill form control
-   */
+  loadEmployees(): void {
+    this.employees = this.employeeService.getEmployees();
+  }
+
   createSkillControl(value: string = ''): FormGroup {
     return this.fb.group({
       skill: [value]
     });
   }
 
-  /**
-   * Get skills FormArray
-   */
   getSkills(): FormArray {
     return this.employeeForm.get('skills') as FormArray;
   }
 
-  /**
-   * Get skill control by index
-   */
   getSkillControl(index: number): FormControl {
     return this.getSkills().at(index).get('skill') as FormControl;
   }
 
-  /**
-   * Add a new skill field
-   */
   addSkill(): void {
     this.getSkills().push(this.createSkillControl(''));
   }
 
-  /**
-   * Remove a skill field by index
-   */
   removeSkill(index: number): void {
     if (this.getSkills().length > 1) {
       this.getSkills().removeAt(index);
     }
   }
 
-  /**
-   * Load employees from service
-   */
-  loadEmployees(): void {
-    this.employees = this.employeeService.getEmployees();
-  }
 
-  /**
-   * Handle form submission to add employee
-   */
   onSubmit(): void {
     if (this.employeeForm.invalid) {
       return;
@@ -98,7 +78,6 @@ export class ReactiveEmsComponent implements OnInit {
 
     const formValue = this.employeeForm.value;
     
-    // Extract skills from FormArray
     const skills = formValue.skills.map((skill: any) => skill.skill).filter((s: string) => s.trim());
 
     const employeeData = {
@@ -114,49 +93,75 @@ export class ReactiveEmsComponent implements OnInit {
       skills: skills
     };
 
-    // Add employee using service
-    this.employeeService.addEmployee(employeeData);
+    if (this.isEditMode && this.editingEmployeeId !== null) {
+      this.employeeService.updateEmployee(this.editingEmployeeId, employeeData);
+      console.log('Employee updated:', employeeData);
+    } else {
+      this.employeeService.addEmployee(employeeData);
+      console.log('Employee added:', employeeData);
+    }
     
-    // Reload employees
     this.loadEmployees();
-
-    // Reset form
     this.resetForm();
-
-    console.log('Employee added:', employeeData);
-    console.log('All employees:', this.employees);
   }
 
-  /**
-   * Reset the form to initial state
-   */
   resetForm(): void {
     this.employeeForm.reset();
     
-    // Reset skills array to have one empty field
     const skillsArray = this.getSkills();
     while (skillsArray.length > 0) {
       skillsArray.removeAt(0);
     }
     skillsArray.push(this.createSkillControl(''));
 
-    // Reset address group
     this.employeeForm.get('address')?.reset();
+    
+    this.isEditMode = false;
+    this.editingEmployeeId = null;
   }
 
-  /**
-   * Delete an employee by ID
-   */
   deleteEmployee(id: number): void {
     const employeeName = this.employees.find(emp => emp.id === id)?.name;
-    
-    // Delete using service
     const success = this.employeeService.deleteEmployee(id);
-    
     if (success) {
-      // Reload employees
       this.loadEmployees();
       console.log(`Employee "${employeeName}" deleted successfully`);
     }
+  }
+
+  editEmployee(employee: Employee): void {
+    this.isEditMode = true;
+    this.editingEmployeeId = employee.id;
+
+    this.employeeForm.patchValue({
+      name: employee.name,
+      email: employee.email,
+      position: employee.position,
+      department: employee.department,
+      address: {
+        street: employee.address.street,
+        city: employee.address.city,
+        postalCode: employee.address.postalCode
+      }
+    });
+
+    const skillsArray = this.getSkills();
+    while (skillsArray.length > 0) {
+      skillsArray.removeAt(0);
+    }
+    
+    if (employee.skills.length > 0) {
+      employee.skills.forEach(skill => {
+        skillsArray.push(this.createSkillControl(skill));
+      });
+    } else {
+      skillsArray.push(this.createSkillControl(''));
+    }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  cancelEdit(): void {
+    this.resetForm();
   }
 }

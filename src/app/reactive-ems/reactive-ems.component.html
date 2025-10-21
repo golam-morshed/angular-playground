@@ -4,7 +4,7 @@
     <div class="col-md-10 col-lg-8">
       <div class="card">
         <div class="card-header bg-primary text-white">
-          <h3 class="text-center mb-0">Add Employee</h3>
+          <h3 class="text-center mb-0">{{ isEditMode ? 'Edit' : 'Add' + ' Employee Form' }}</h3>
         </div>
         <div class="card-body">
           <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
@@ -150,14 +150,14 @@
                 class="btn btn-primary flex-grow-1"
                 [disabled]="employeeForm.invalid"
               >
-                Add Employee
+                {{ isEditMode ? 'Update Employee' : 'Add Employee' }}
               </button>
               <button
                 type="button"
-                class="btn btn-secondary"
-                (click)="resetForm()"
+                [class]="isEditMode ? 'btn btn-danger' : 'btn btn-secondary'"
+                (click)="isEditMode ? cancelEdit() : resetForm()"
               >
-                Reset
+                {{ isEditMode ? 'Cancel' : 'Reset' }}
               </button>
             </div>
           </form>
@@ -207,7 +207,11 @@
                     <small *ngIf="employee.skills.length === 0" class="text-muted">No skills</small>
                   </td>
                   <td>
-                    <button class="btn btn-sm btn-warning" title="Edit employee">
+                    <button 
+                      class="btn btn-sm btn-warning" 
+                      title="Edit employee"
+                      (click)="editEmployee(employee)"
+                    >
                       Edit
                     </button>
                     <button 
@@ -226,13 +230,3 @@
       </div>
     </div>
   </div>
-
-  <!-- Empty State Message -->
-  <!-- <div class="row justify-content-center mt-4" *ngIf="employees.length === 0">
-    <div class="col-md-8 text-center">
-      <div class="alert alert-info">
-        <p class="mb-0">No employees added yet. Fill the form above and click "Add Employee" to get started.</p>
-      </div>
-    </div>
-  </div>
-</div> -->
