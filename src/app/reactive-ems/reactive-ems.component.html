@@ -1,0 +1,238 @@
+<div class="container mt-5">
+  <!-- Employee Form Section -->
+  <div class="row justify-content-center mb-5">
+    <div class="col-md-10 col-lg-8">
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <h3 class="text-center mb-0">Add Employee</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+            
+            <!-- Name Field -->
+            <div class="mb-3">
+              <label for="name" class="form-label">Full Name *</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                formControlName="name"
+                placeholder="Enter employee name"
+              >
+              <div class="invalid-feedback" *ngIf="employeeForm.get('name')?.invalid && employeeForm.get('name')?.touched">
+                Name is required
+              </div>
+            </div>
+
+            <!-- Email Field -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Email Address *</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                formControlName="email"
+                placeholder="Enter email address"
+              >
+              <div class="invalid-feedback" *ngIf="employeeForm.get('email')?.invalid && employeeForm.get('email')?.touched">
+                <div *ngIf="employeeForm.get('email')?.errors?.['required']">Email is required</div>
+                <div *ngIf="employeeForm.get('email')?.errors?.['email']">Please enter a valid email</div>
+              </div>
+            </div>
+
+            <!-- Position Field -->
+            <div class="mb-3">
+              <label for="position" class="form-label">Position *</label>
+              <input
+                type="text"
+                class="form-control"
+                id="position"
+                formControlName="position"
+                placeholder="Enter position"
+              >
+              <div class="invalid-feedback" *ngIf="employeeForm.get('position')?.invalid && employeeForm.get('position')?.touched">
+                Position is required
+              </div>
+            </div>
+
+            <!-- Department Field -->
+            <div class="mb-3">
+              <label for="department" class="form-label">Department *</label>
+              <input
+                type="text"
+                class="form-control"
+                id="department"
+                formControlName="department"
+                placeholder="Enter department"
+              >
+              <div class="invalid-feedback" *ngIf="employeeForm.get('department')?.invalid && employeeForm.get('department')?.touched">
+                Department is required
+              </div>
+            </div>
+
+            <!-- Address FormGroup -->
+            <fieldset class="mb-3 p-3 border rounded" formGroupName="address">
+              <legend class="fw-bold mb-3">Address</legend>
+              
+              <div class="mb-2">
+                <label for="street" class="form-label">Street</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="street"
+                  formControlName="street"
+                  placeholder="Enter street"
+                >
+              </div>
+
+              <div class="mb-2">
+                <label for="city" class="form-label">City</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="city"
+                  formControlName="city"
+                  placeholder="Enter city"
+                >
+              </div>
+
+              <div class="mb-2">
+                <label for="postalCode" class="form-label">Postal Code</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="postalCode"
+                  formControlName="postalCode"
+                  placeholder="Enter postal code"
+                >
+              </div>
+            </fieldset>
+
+            <!-- Skills FormArray -->
+            <fieldset class="mb-3 p-3 border rounded">
+              <legend class="fw-bold mb-3">Skills</legend>
+              
+              <div formArrayName="skills">
+                <div *ngFor="let skillGroup of getSkills().controls; let i = index" class="mb-2 d-flex gap-2">
+                  <div class="flex-grow-1">
+                    <input
+                      type="text"
+                      class="form-control"
+                      [formControl]="getSkillControl(i)"
+                      placeholder="Enter skill"
+                    >
+                  </div>
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    (click)="removeSkill(i)"
+                    [disabled]="getSkills().length === 1"
+                    title="Remove skill"
+                  >
+                    ×
+                  </button>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                class="btn btn-secondary btn-sm mt-2"
+                (click)="addSkill()"
+              >
+                + Add Skill
+              </button>
+            </fieldset>
+
+            <!-- Submit and Reset Buttons -->
+            <div class="d-flex gap-2">
+              <button
+                type="submit"
+                class="btn btn-primary flex-grow-1"
+                [disabled]="employeeForm.invalid"
+              >
+                Add Employee
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                (click)="resetForm()"
+              >
+                Reset
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Employees Table Section -->
+  <div class="row justify-content-center" *ngIf="employees.length > 0">
+    <div class="col-md-12 col-lg-10">
+      <div class="card">
+        <div class="card-header bg-success text-white">
+          <h4 class="text-center mb-0">Employees ({{ employees.length }})</h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped table-hover">
+              <thead class="table-dark">
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Position</th>
+                  <th>Department</th>
+                  <th>Address</th>
+                  <th>Skills</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let employee of employees">
+                  <td>{{ employee.id }}</td>
+                  <td>{{ employee.name }}</td>
+                  <td>{{ employee.email }}</td>
+                  <td>{{ employee.position }}</td>
+                  <td>{{ employee.department }}</td>
+                  <td>
+                    <small>
+                      {{ employee.address.street }}, {{ employee.address.city }}, {{ employee.address.postalCode }}
+                    </small>
+                  </td>
+                  <td>
+                    <small *ngIf="employee.skills.length > 0">
+                      {{ employee.skills.join(', ') }}
+                    </small>
+                    <small *ngIf="employee.skills.length === 0" class="text-muted">No skills</small>
+                  </td>
+                  <td>
+                    <button class="btn btn-sm btn-warning" title="Edit employee">
+                      Edit
+                    </button>
+                    <button 
+                      class="btn btn-sm btn-danger ms-2" 
+                      title="Delete employee"
+                      (click)="deleteEmployee(employee.id)"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State Message -->
+  <!-- <div class="row justify-content-center mt-4" *ngIf="employees.length === 0">
+    <div class="col-md-8 text-center">
+      <div class="alert alert-info">
+        <p class="mb-0">No employees added yet. Fill the form above and click "Add Employee" to get started.</p>
+      </div>
+    </div>
+  </div>
+</div> -->
