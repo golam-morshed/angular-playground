@@ -1,0 +1,95 @@
+{
+  "employees": [
+    {
+      "name": "John Smith Updated",
+      "email": "john.smith@company.com",
+      "position": "Senior Software Engineer",
+      "department": "Engineering",
+      "address": {
+        "street": "123 Main Street",
+        "city": "San Francisco",
+        "postalCode": "94105"
+      },
+      "skills": [
+        "JavaScript",
+        "TypeScript",
+        "Angular",
+        "Node.jss",
+        "Updated"
+      ],
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "name": "Sarah Johnson",
+      "email": "sarah.johnson@company.com",
+      "position": "Product Manager",
+      "department": "Product",
+      "address": {
+        "street": "456 Oak Avenue",
+        "city": "New York",
+        "postalCode": "10001"
+      },
+      "skills": [
+        "Product Strategy",
+        "Agile",
+        "User Research",
+        "Analytics"
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Michael Brown",
+      "email": "michael.brown@company.com",
+      "position": "UX Designer",
+      "department": "Design",
+      "address": {
+        "street": "789 Pine Street",
+        "city": "Seattle",
+        "postalCode": "98101"
+      },
+      "skills": [
+        "UI/UX Design",
+        "Figma",
+        "User Testing",
+        "Prototyping"
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Emily Davis",
+      "email": "emily.davis@company.com",
+      "position": "Data Scientist",
+      "department": "Analytics",
+      "address": {
+        "street": "321 Elm Street",
+        "city": "Boston",
+        "postalCode": "02101"
+      },
+      "skills": [
+        "Python",
+        "Machine Learning",
+        "Statistics",
+        "SQL"
+      ]
+    },
+    {
+      "id": "5",
+      "name": "David Wilson",
+      "email": "david.wilson@company.com",
+      "position": "DevOps Engineer",
+      "department": "Engineering",
+      "address": {
+        "street": "654 Cedar Lane",
+        "city": "Austin",
+        "postalCode": "73301"
+      },
+      "skills": [
+        "Docker",
+        "Kubernetes",
+        "AWS",
+        "CI/CD"
+      ]
+    }
+  ]
+}

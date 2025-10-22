@@ -4,9 +4,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "api": "json-server --watch employee-db.json --port 3000",
+    "start:full": "concurrently \"npm run api\" \"npm run start\"",
+    "vercel-build": "ng build --configuration production"
   },
   "private": true,
   "dependencies": {
@@ -19,6 +22,8 @@
     "@angular/platform-browser-dynamic": "^15.2.0",
     "@angular/router": "^15.2.0",
     "bootstrap": "^5.3.8",
+    "concurrently": "^8.2.2",
+    "json-server": "1.0.0-beta.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

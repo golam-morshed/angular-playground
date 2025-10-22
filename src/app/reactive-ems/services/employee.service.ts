@@ -1,58 +1,66 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, map, catchError, throwError } from 'rxjs';
+import { environment } from '../../../environments/environment';
 import { Employee } from '../models/employee.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
-  private employees: Employee[] = [];
-  private idCounter = 1;
+  private apiUrl = environment.apiUrl;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  addEmployee(employee: Omit<Employee, 'id'>): Employee {
-    const newEmployee: Employee = {
-      ...employee,
-      id: this.idCounter++
-    };
-    this.employees.push(newEmployee);
-    return newEmployee;
+  addEmployee(employee: Omit<Employee, 'id'>): Observable<Employee> {
+    return this.http.post<Employee>(this.apiUrl, employee)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
-  getEmployees(): Employee[] {
-    return [...this.employees];
+  getEmployees(): Observable<Employee[]> {
+    return this.http.get<Employee[]>(this.apiUrl)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
-  getEmployeeById(id: number): Employee | undefined {
-    return this.employees.find(emp => emp.id === id);
+  getEmployeeById(id: number): Observable<Employee> {
+    return this.http.get<Employee>(`${this.apiUrl}/${id}`)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
-  updateEmployee(id: number, employee: Omit<Employee, 'id'>): Employee | undefined {
-    const index = this.employees.findIndex(emp => emp.id === id);
-    if (index !== -1) {
-      const updatedEmployee: Employee = {
-        ...employee,
-        id
-      };
-      this.employees[index] = updatedEmployee;
-      return updatedEmployee;
-    }
-    return undefined;
+  updateEmployee(id: number, employee: Omit<Employee, 'id'>): Observable<Employee> {
+    return this.http.put<Employee>(`${this.apiUrl}/${id}`, { ...employee, id })
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
-  deleteEmployee(id: number): boolean {
-    const index = this.employees.findIndex(emp => emp.id === id);
-    if (index !== -1) {
-      this.employees.splice(index, 1);
-      return true;
-    }
-    return false;
+  deleteEmployee(id: number): Observable<Employee> {
+    return this.http.delete<Employee>(`${this.apiUrl}/${id}`)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   // unique name custom validator
-  isNameUnique(name: string, excludeId?:number):boolean {
-    return !this.employees.some(employee => 
-      employee.name.toLocaleLowerCase().trim() === name.toLowerCase().trim() && employee.id !== excludeId
-    )
+  isNameUnique(name: string, excludeId?: number): Observable<boolean> {
+    return this.getEmployees().pipe(
+      map(employees => 
+        !employees.some(employee => 
+          employee.name.toLowerCase().trim() === name.toLowerCase().trim() && employee.id !== excludeId
+        )
+      ),
+      catchError(this.handleError)
+    );
+  }
+
+  private handleError(error: any): Observable<never> {
+    console.error('EmployeeService Error:', error);
+    return throwError(() => error);
   }
 }
