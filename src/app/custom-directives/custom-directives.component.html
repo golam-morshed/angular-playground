@@ -1,0 +1,22 @@
+  <!-- Custom Color Examples -->
+<div class="container  mb-5 mt-5">
+    <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header bg-success text-white">
+              <h3 class="mb-0">Custom Colors</h3>
+            </div>
+            <div class="card-body">
+              <div class="row g-3">
+                <div class="col-md-4" *ngFor="let color of colors">
+                  <div class="demo-box" appHighlight [highlightColor]="color.value" defaultColor="#fefefe">
+                    <h5>{{ color.name }}</h5>
+                    <p>Hover to change the bg color to {{ color.value }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

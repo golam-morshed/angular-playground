@@ -90,6 +90,22 @@
         "AWS",
         "CI/CD"
       ]
+    },
+    {
+      "id": "bd6c",
+      "name": "Golam Morshed",
+      "email": "morshed@gmail.com",
+      "position": "developer",
+      "department": "it",
+      "address": {
+        "street": "Khulna",
+        "city": "Khulna",
+        "postalCode": "9100"
+      },
+      "skills": [
+        "Javascript",
+        "CSS"
+      ]
     }
   ]
 }

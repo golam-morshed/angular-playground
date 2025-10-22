@@ -1,0 +1,28 @@
+.demo-box {
+  padding: 30px;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    border-color: #007bff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  h4, h5 {
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin-bottom: 0;
+    color: #666;
+  }
+}
