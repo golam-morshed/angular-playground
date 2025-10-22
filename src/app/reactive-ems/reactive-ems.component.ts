@@ -50,9 +50,7 @@ export class ReactiveEmsComponent implements OnInit {
     }
     
     const name = control.value.trim();
-    // Note: This is a synchronous validator, but the service now returns Observable
-    // For a proper async validator, we'd need to implement AsyncValidatorFn
-    // For now, we'll handle uniqueness validation in the submit method
+
     return null;
   }
 
