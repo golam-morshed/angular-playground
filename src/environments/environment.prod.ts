@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: '/api/employees' // Vercel serverless function
+  apiUrl: 'https://fake-json-api-yvgk.onrender.com/employees' // self hoster fake json api
 };

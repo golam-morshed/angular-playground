@@ -8,8 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "api": "json-server --watch employee-db.json --port 3000",
-    "start:full": "concurrently \"npm run api\" \"npm run start\"",
-    "vercel-build": "ng build --configuration production"
+    "start:full": "concurrently \"npm run api\" \"npm run start\""
   },
   "private": true,
   "dependencies": {
