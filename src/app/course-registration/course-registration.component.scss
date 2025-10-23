@@ -1,0 +1,66 @@
+.course-checkboxes {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+}
+
+.form-check {
+  background-color: white;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background-color: #e9ecef;
+    border-color: #0d6efd !important;
+  }
+}
+
+.form-check-input:checked ~ .form-check-label {
+  font-weight: 600;
+}
+
+.card {
+  border-radius: 10px;
+}
+
+.badge {
+  font-size: 0.85rem;
+  padding: 0.4rem 0.6rem;
+}
+
+.table {
+  margin-bottom: 0;
+  
+  td {
+    vertical-align: middle;
+  }
+}
+
+.btn-group-sm .btn {
+  font-size: 0.875rem;
+}
+
+.border-bottom {
+  border-bottom: 2px solid #dee2e6 !important;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .table-responsive {
+    font-size: 0.875rem;
+  }
+  
+  .d-flex.gap-2 {
+    flex-direction: column;
+    
+    .btn {
+      width: 100%;
+    }
+  }
+}
+

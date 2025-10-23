@@ -10,6 +10,10 @@ const routes: Routes = [
     path: 'reactive-form',
     loadChildren: () => import('./reactive-ems/reactive-ems.module').then(m => m.ReactiveEmsModule)
   },
+  {
+    path: 'course-registration',
+    loadChildren: () => import('./course-registration/course-registration.module').then(m => m.CourseRegistrationModule)
+  },
   { path: 'custom-directive', component: CustomDirectivesComponent }
 ];
 

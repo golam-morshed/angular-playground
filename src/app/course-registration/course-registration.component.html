@@ -1,0 +1,223 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h2 class="text-center mb-4">Course Registration Form</h2>
+      
+      <!-- Registration Form -->
+      <div class="card shadow-sm mb-4">
+        <div class="card-body">
+          <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+            
+            <!-- Student Information Section -->
+            <h5 class="border-bottom pb-2 mb-3">Student Information</h5>
+            
+            <!-- Student Name -->
+            <div class="mb-3">
+              <label for="studentName" class="form-label">
+                Student Name <span class="text-danger">*</span>
+              </label>
+              <input 
+                type="text" 
+                class="form-control" 
+                id="studentName"
+                formControlName="studentName"
+                [class.is-invalid]="isFieldInvalid('studentName')"
+                placeholder="Enter student name">
+              <div class="invalid-feedback" *ngIf="isFieldInvalid('studentName')">
+                {{ getFieldError('studentName') }}
+              </div>
+            </div>
+
+            <!-- Student Email -->
+            <div class="mb-3">
+              <label for="studentEmail" class="form-label">
+                Student Email <span class="text-danger">*</span>
+              </label>
+              <input 
+                type="email" 
+                class="form-control" 
+                id="studentEmail"
+                formControlName="studentEmail"
+                [class.is-invalid]="isFieldInvalid('studentEmail')"
+                placeholder="Enter student email">
+              <div class="invalid-feedback" *ngIf="isFieldInvalid('studentEmail')">
+                {{ getFieldError('studentEmail') }}
+              </div>
+            </div>
+
+            <!-- Courses Selection Section -->
+            <h5 class="border-bottom pb-2 mb-3 mt-4">Course Selection</h5>
+            
+            <div class="mb-3">
+              <label class="form-label">
+                Select Courses <span class="text-danger">*</span>
+              </label>
+              <div formArrayName="selectedCourses" class="course-checkboxes">
+                <div 
+                  *ngFor="let course of availableCourses; let i = index" 
+                  class="form-check mb-2 p-3 border rounded">
+                  <input 
+                    class="form-check-input" 
+                    type="checkbox" 
+                    [formControlName]="i"
+                    [id]="'course-' + course.id">
+                  <label class="form-check-label ms-2" [for]="'course-' + course.id">
+                    <strong>{{ course.name }}</strong>
+                    <small class="text-muted d-block">{{ course.code }} - {{ course.credits }} Credits</small>
+                  </label>
+                </div>
+              </div>
+              <div class="text-danger small mt-2" 
+                   *ngIf="selectedCoursesArray.touched && selectedCoursesArray.errors?.['minCourses']">
+                {{ getFieldError('selectedCourses') }}
+              </div>
+            </div>
+
+            <!-- Payment Details Section -->
+            <h5 class="border-bottom pb-2 mb-3 mt-4">Payment Details</h5>
+            
+            <div formGroupName="paymentDetails">
+              <!-- Card Number -->
+              <div class="mb-3">
+                <label for="cardNumber" class="form-label">
+                  Card Number <span class="text-danger">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  id="cardNumber"
+                  formControlName="cardNumber"
+                  [class.is-invalid]="isFieldInvalid('paymentDetails.cardNumber')"
+                  placeholder="1234567812345678"
+                  maxlength="16">
+                <small class="form-text text-muted">Enter 16-digit card number</small>
+                <div class="invalid-feedback" *ngIf="isFieldInvalid('paymentDetails.cardNumber')">
+                  {{ getFieldError('paymentDetails.cardNumber') }}
+                </div>
+              </div>
+
+              <!-- Card Holder Name -->
+              <div class="mb-3">
+                <label for="cardHolderName" class="form-label">
+                  Card Holder Name <span class="text-danger">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  id="cardHolderName"
+                  formControlName="cardHolderName"
+                  [class.is-invalid]="isFieldInvalid('paymentDetails.cardHolderName')"
+                  placeholder="Enter name on card">
+                <div class="invalid-feedback" *ngIf="isFieldInvalid('paymentDetails.cardHolderName')">
+                  {{ getFieldError('paymentDetails.cardHolderName') }}
+                </div>
+              </div>
+
+              <div class="row">
+                <!-- Expiry Date -->
+                <div class="col-md-6 mb-3">
+                  <label for="expiryDate" class="form-label">
+                    Expiry Date <span class="text-danger">*</span>
+                  </label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    id="expiryDate"
+                    formControlName="expiryDate"
+                    [class.is-invalid]="isFieldInvalid('paymentDetails.expiryDate')"
+                    placeholder="MM/YY"
+                    maxlength="5">
+                  <small class="form-text text-muted">Format: MM/YY</small>
+                  <div class="invalid-feedback" *ngIf="isFieldInvalid('paymentDetails.expiryDate')">
+                    {{ getFieldError('paymentDetails.expiryDate') }}
+                  </div>
+                </div>
+
+                <!-- CVV -->
+                <div class="col-md-6 mb-3">
+                  <label for="cvv" class="form-label">
+                    CVV <span class="text-danger">*</span>
+                  </label>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    id="cvv"
+                    formControlName="cvv"
+                    [class.is-invalid]="isFieldInvalid('paymentDetails.cvv')"
+                    placeholder="123"
+                    maxlength="4">
+                  <small class="form-text text-muted">3 or 4 digits</small>
+                  <div class="invalid-feedback" *ngIf="isFieldInvalid('paymentDetails.cvv')">
+                    {{ getFieldError('paymentDetails.cvv') }}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Form Buttons -->
+            <div class="d-flex gap-2 mt-4">
+              <button 
+                type="submit" 
+                class="btn btn-primary flex-grow-1"
+                [disabled]="registrationForm.invalid">
+                Submit Registration
+              </button>
+              <button 
+                type="button" 
+                class="btn btn-secondary"
+                (click)="resetForm()">
+                Reset
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Registrations List -->
+      <div class="card shadow-sm" *ngIf="registrations.length > 0">
+        <div class="card-header bg-primary text-white">
+          <h5 class="mb-0">Registered Students ({{ registrations.length }})</h5>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Student Name</th>
+                  <th>Email</th>
+                  <th>Courses</th>
+                  <th>Payment Card</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let registration of registrations">
+                  <td>{{ registration.studentName }}</td>
+                  <td>{{ registration.studentEmail }}</td>
+                  <td>
+                    <span class="badge bg-info text-dark me-1" 
+                          *ngFor="let courseId of registration.selectedCourses">
+                      {{ getCourseNames([courseId]) }}
+                    </span>
+                  </td>
+                  <td>
+                    <small>{{ maskCardNumber(registration.paymentDetails.cardNumber) }}</small>
+                  </td>
+                  <td>
+                    <button 
+                      class="btn btn-sm btn-outline-danger"
+                      (click)="deleteRegistration(registration.id!)">
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+

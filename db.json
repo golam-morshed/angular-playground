@@ -107,5 +107,44 @@
         "CSS"
       ]
     }
-  ]
+  ],
+  "availableCourses": [
+    {
+      "id": "1",
+      "name": "Angular Fundamentals",
+      "code": "ANG-101",
+      "credits": 4
+    },
+    {
+      "id": "2",
+      "name": "TypeScript Advanced",
+      "code": "TS-201",
+      "credits": 3
+    },
+    {
+      "id": "3",
+      "name": "RxJS and Reactive Programming",
+      "code": "RX-301",
+      "credits": 3
+    },
+    {
+      "id": "4",
+      "name": "Angular State Management",
+      "code": "ANG-401",
+      "credits": 4
+    },
+    {
+      "id": "5",
+      "name": "Web Performance Optimization",
+      "code": "WEB-501",
+      "credits": 3
+    },
+    {
+      "id": "6",
+      "name": "Angular Testing",
+      "code": "ANG-601",
+      "credits": 3
+    }
+  ],
+  "courseRegistrations": []
 }

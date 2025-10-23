@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://fake-json-api-yvgk.onrender.com/employees' // self hoster fake json api
+  apiBaseUrl: 'https://fake-json-api-yvgk.onrender.com' // self hoster fake json api
 };
