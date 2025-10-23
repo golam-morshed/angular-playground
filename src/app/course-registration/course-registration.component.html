@@ -6,7 +6,7 @@
       <!-- Registration Form -->
       <div class="card shadow-sm mb-4">
         <div class="card-body">
-          <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+          <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" appFocusInvalid>
             
             <!-- Student Information Section -->
             <h5 class="border-bottom pb-2 mb-3">Student Information</h5>
@@ -158,7 +158,7 @@
               <button 
                 type="submit" 
                 class="btn btn-primary flex-grow-1"
-                [disabled]="registrationForm.invalid">
+                >
                 Submit Registration
               </button>
               <button 

@@ -1,16 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HighlightDirective } from './directives/highlight.directive';
+import { FocusInvalidDirective } from './directives/focus-invalid.directive';
 
 @NgModule({
   declarations: [
-    HighlightDirective
+    HighlightDirective,
+    FocusInvalidDirective
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    HighlightDirective
+    HighlightDirective,
+    FocusInvalidDirective
   ]
 })
 export class SharedModule { }

@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CourseRegistrationRoutingModule } from './course-registration-routing.module';
 import { CourseRegistrationComponent } from './course-registration.component';
 import { CourseRegistrationService } from './services/course-registration.service';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { CourseRegistrationService } from './services/course-registration.servic
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    CourseRegistrationRoutingModule
+    CourseRegistrationRoutingModule,
+    SharedModule
   ],
   providers: [CourseRegistrationService]
 })
