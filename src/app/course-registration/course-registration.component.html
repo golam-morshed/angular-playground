@@ -61,10 +61,9 @@
                     type="checkbox" 
                     [formControlName]="i"
                     [id]="'course-' + course.id">
-                  <label class="form-check-label ms-2" [for]="'course-' + course.id">
-                    <strong>{{ course.name }}</strong>
-                    <small class="text-muted d-block">{{ course.code }} - {{ course.credits }} Credits</small>
-                  </label>
+                   <label class="form-check-label ms-2" [for]="'course-' + course.id">
+                     {{ course.name }}
+                   </label>
                 </div>
               </div>
               <div class="text-danger small mt-2" 

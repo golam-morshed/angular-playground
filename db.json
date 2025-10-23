@@ -110,40 +110,28 @@
   ],
   "availableCourses": [
     {
-      "id": "1",
-      "name": "Angular",
-      "code": "ANG-101",
-      "credits": 4
+      "id": 1,
+      "name": "Angular Fundamentals"
     },
     {
-      "id": "2",
-      "name": "TypeScript",
-      "code": "TS-201",
-      "credits": 3
+      "id": 2,
+      "name": "TypeScript Advanced"
     },
     {
-      "id": "3",
-      "name": "RxJS",
-      "code": "RX-301",
-      "credits": 3
+      "id": 3,
+      "name": "RxJS and Reactive Programming"
     },
     {
-      "id": "4",
-      "name": "React",
-      "code": "ANG-401",
-      "credits": 4
+      "id": 4,
+      "name": "Angular State Management"
     },
     {
-      "id": "5",
-      "name": "Next",
-      "code": "WEB-501",
-      "credits": 3
+      "id": 5,
+      "name": "Web Performance Optimization"
     },
     {
-      "id": "6",
-      "name": "Redux",
-      "code": "ANG-601",
-      "credits": 3
+      "id": 6,
+      "name": "Angular Testing"
     }
   ],
   "courseRegistrations": [

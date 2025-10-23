@@ -4,20 +4,32 @@
   padding: 10px;
   background-color: #f8f9fa;
   border-radius: 5px;
-}
-
-.form-check {
-  background-color: white;
-  transition: all 0.2s ease;
   
-  &:hover {
-    background-color: #e9ecef;
-    border-color: #0d6efd !important;
+  .form-check {
+    background-color: white;
+    transition: all 0.2s ease;
+    padding: 0.5rem 0.75rem 0.5rem 2.25rem !important;
+    
+    &:hover {
+      background-color: #e9ecef;
+      border-color: #0d6efd !important;
+    }
+  }
+  
+  .form-check-label {
+    font-size: 0.9rem;
+    font-weight: 400;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .form-check-input {
+    margin-top: 0.15rem;
   }
 }
 
 .form-check-input:checked ~ .form-check-label {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .card {
