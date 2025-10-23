@@ -27,7 +27,7 @@ export class CourseRegistrationComponent implements OnInit {
   initializeForm(): void {
     this.registrationForm = this.fb.group({
       studentName: ['', [Validators.required]],
-      studentEmail: ['', [Validators.required, Validators.email]],
+      studentEmail: ['', [Validators.required, Validators.email, this.duplicateEmailValidator.bind(this)]],
       selectedCourses: this.fb.array([], [this.minSelectedCoursesValidator(1)]),
       paymentDetails: this.fb.group({
         cardNumber: ['', [Validators.required, Validators.pattern(/^\d{16}$/)]],
@@ -47,6 +47,21 @@ export class CourseRegistrationComponent implements OnInit {
       }
       return null;
     };
+  }
+
+  // Custom validator for duplicate email
+  duplicateEmailValidator(control: AbstractControl): ValidationErrors | null {
+    if (!control.value) {
+      return null;
+    }
+
+    const email = control.value.trim();
+    if (this.registrations.some(
+      registration => registration.studentEmail === email
+    )) {
+      return { duplicateEmail: true };
+    }
+    return null;
   }
 
   // Custom validator for expiry date (MM/YY format)
@@ -216,6 +231,7 @@ export class CourseRegistrationComponent implements OnInit {
       if (field.errors['invalidFormat']) return 'Please use MM/YY format';
       if (field.errors['expired']) return 'Card has expired';
       if (field.errors['minCourses']) return 'Please select at least one course';
+      if (field.errors['duplicateEmail']) return 'Email already exists';
     }
     return '';
   }
@@ -236,7 +252,7 @@ export class CourseRegistrationComponent implements OnInit {
   // Format card number for display (mask)
   maskCardNumber(cardNumber: string): string {
     if (!cardNumber) return '';
-    return '**** **** **** ' + cardNumber.slice(-4);
+    return '**** **** ' + cardNumber.slice(-4);
   }
 }
 
