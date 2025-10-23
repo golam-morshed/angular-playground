@@ -9,7 +9,6 @@ import { Employee } from '../models/employee.model';
 })
 export class EmployeeService {
   private apiUrl = `${environment.apiBaseUrl}/employees`;
-  // private apiUrl = 'http://localhost:3000/employees';
 
   constructor(private http: HttpClient) { }
 

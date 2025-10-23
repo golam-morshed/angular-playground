@@ -136,18 +136,18 @@
   ],
   "courseRegistrations": [
     {
-      "id": "4529",
+      "id": "a9be",
       "studentName": "Golam",
       "studentEmail": "golam@gmail.com",
       "selectedCourses": [
-        "1",
-        "2"
+        1,
+        2
       ],
       "paymentDetails": {
-        "cardNumber": "1234567812345678",
-        "cardHolderName": "sdhfjk",
-        "expiryDate": "12/25",
-        "cvv": "123"
+        "cardNumber": "1212121212121212",
+        "cardHolderName": "Golam Morshed`",
+        "expiryDate": "12/26",
+        "cvv": "1234"
       }
     }
   ]
