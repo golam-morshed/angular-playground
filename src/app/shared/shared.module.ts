@@ -2,15 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HighlightDirective } from './directives/highlight.directive';
 import { FocusInvalidDirective } from './directives/focus-invalid.directive';
-import { FormatCurrencyDirective } from './directives/format-currency.directive';
-import { FormatDateDirective } from './directives/format-date.directive';
+import { FormatCurrencyPipe } from './pipes/format-currency.pipe';
+import { FormatDatePipe } from './pipes/format-date.pipe';
 
 @NgModule({
   declarations: [
     HighlightDirective,
     FocusInvalidDirective,
-    FormatCurrencyDirective,
-    FormatDateDirective
+    FormatCurrencyPipe,
+    FormatDatePipe
   ],
   imports: [
     CommonModule
@@ -18,8 +18,8 @@ import { FormatDateDirective } from './directives/format-date.directive';
   exports: [
     HighlightDirective,
     FocusInvalidDirective,
-    FormatCurrencyDirective,
-    FormatDateDirective
+    FormatCurrencyPipe,
+    FormatDatePipe
   ]
 })
 export class SharedModule { }

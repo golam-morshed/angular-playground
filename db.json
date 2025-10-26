@@ -167,18 +167,25 @@
       "description": "New clothes"
     },
     {
-      "date": "2024-01-18",
-      "amount": 45.75,
-      "category": "Entertainment",
-      "description": "Movie ticketsbb",
-      "id": "4"
-    },
-    {
       "id": "5",
       "date": "2024-01-19",
       "amount": 89.99,
       "category": "Bills",
       "description": "Electricity bill"
+    },
+    {
+      "id": "5359",
+      "date": "2025-10-30",
+      "amount": 300,
+      "category": "Bills",
+      "description": "Test"
+    },
+    {
+      "date": "2025-10-26",
+      "amount": 45,
+      "category": "Bills",
+      "description": "Movie ticketsbb",
+      "id": "6ed5"
     }
   ]
 }

@@ -1,35 +1,44 @@
 <div class="expenses-section">
   <h3>All Expenses</h3>
   
-  <div class="expenses-list" *ngIf="expenses.length > 0; else noExpenses">
-    <div *ngFor="let expense of expenses" class="expense-item">
-      <div class="expense-main">
-        <div class="expense-info">
-          <h4 class="expense-description">{{ expense.description }}</h4>
-          <div class="expense-details">
-            <span class="expense-category">{{ expense.category }}</span>
-            <span class="expense-date" [appFormatDate]="expense.date"></span>
-          </div>
-        </div>
-        <div class="expense-amount" [appFormatCurrency]="expense.amount"></div>
-      </div>
-      <div class="expense-actions">
-        <button 
-          class="btn btn-edit" 
-          (click)="onEdit(expense)"
-          title="Edit expense"
-        >
-          <i class="icon-edit">edit</i>
-        </button>
-        <button 
-          class="btn btn-delete" 
-          (click)="onDelete(expense.id)"
-          title="Delete expense"
-        >
-          <i class="icon-delete">delete</i>
-        </button>
-      </div>
-    </div>
+  <div class="table-container" *ngIf="expenses.length > 0; else noExpenses">
+    <table class="expenses-table">
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Category</th>
+          <th>Date</th>
+          <th>Amount</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let expense of expenses" class="expense-row">
+          <td class="expense-description" data-label="Description">{{ expense.description }}</td>
+          <td class="expense-category" data-label="Category">
+            <span class="category-badge">{{ expense.category }}</span>
+          </td>
+          <td class="expense-date" data-label="Date">{{ expense.date | formatDate }}</td>
+          <td class="expense-amount" data-label="Amount">{{ expense.amount | formatCurrency }}</td>
+          <td class="expense-actions" data-label="Actions">
+            <button 
+              class="btn btn-edit" 
+              (click)="onEdit(expense)"
+              title="Edit expense"
+            >
+              <i class="icon-edit">edit</i>
+            </button>
+            <button 
+              class="btn btn-delete" 
+              (click)="onDelete(expense.id)"
+              title="Delete expense"
+            >
+              <i class="icon-delete">delete</i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
   <ng-template #noExpenses>

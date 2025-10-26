@@ -28,6 +28,11 @@ export class ExpenseFormComponent implements OnInit, OnChanges {
     if (changes['expense'] || changes['isEditMode']) {
       this.patchForm();
     }
+    
+    // If switching from edit mode to add mode, reset the form
+    if (changes['isEditMode'] && !this.isEditMode && changes['isEditMode'].previousValue === true) {
+      this.resetForm();
+    }
   }
 
   initializeForm(): void {
@@ -47,17 +52,14 @@ export class ExpenseFormComponent implements OnInit, OnChanges {
         category: this.expense.category,
         description: this.expense.description
       });
-    } else {
-      // Set default date to today
-      this.expenseForm.patchValue({
-        date: new Date().toISOString().split('T')[0]
-      });
     }
   }
 
   onSubmit(): void {
     if (this.expenseForm.valid) {
       this.expenseSubmit.emit(this.expenseForm.value);
+      // Reset form after successful submission
+      this.resetForm();
     } else {
       this.markFormGroupTouched();
     }
@@ -70,9 +72,11 @@ export class ExpenseFormComponent implements OnInit, OnChanges {
 
   resetForm(): void {
     this.expenseForm.reset();
-    this.expenseForm.patchValue({
-      date: new Date().toISOString().split('T')[0]
-    });
+  }
+
+  // Public method to reset form from parent component
+  public resetFormFromParent(): void {
+    this.resetForm();
   }
 
   private markFormGroupTouched(): void {

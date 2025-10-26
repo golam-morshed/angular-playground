@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Expense, ExpenseFormData } from './models/expense.model';
 import { ExpenseService } from './services/expense.service';
+import { ExpenseFormComponent } from './components/expense-form/expense-form.component';
 
 @Component({
   selector: 'app-expense-tracker',
@@ -8,6 +9,8 @@ import { ExpenseService } from './services/expense.service';
   styleUrls: ['./expense-tracker.component.scss']
 })
 export class ExpenseTrackerComponent implements OnInit {
+  @ViewChild(ExpenseFormComponent) expenseFormComponent!: ExpenseFormComponent;
+  
   expenses: Expense[] = [];
   selectedExpense: Expense | null = null;
   isEditMode: boolean = false;
@@ -83,5 +86,9 @@ export class ExpenseTrackerComponent implements OnInit {
   private resetForm(): void {
     this.selectedExpense = null;
     this.isEditMode = false;
+    // Also reset the child form component
+    if (this.expenseFormComponent) {
+      this.expenseFormComponent.resetFormFromParent();
+    }
   }
 }
