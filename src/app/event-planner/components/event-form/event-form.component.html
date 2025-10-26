@@ -1,0 +1,123 @@
+<div class="event-form-container">
+  <h3>{{ isEditMode ? 'Edit Event' : 'Add New Event' }}</h3>
+  
+  <form [formGroup]="eventForm" (ngSubmit)="onSubmit()" class="event-form">
+    <!-- Event Details -->
+    <div class="form-group">
+      <label for="title" class="form-label">Event Title *</label>
+      <input
+        type="text"
+        id="title"
+        formControlName="title"
+        class="form-control"
+        placeholder="Enter event title"
+        [class.is-invalid]="isFieldInvalid('title')"
+      />
+      <div class="invalid-feedback" *ngIf="isFieldInvalid('title')">
+        {{ getFieldError('title') }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="date" class="form-label">Event Date *</label>
+      <input
+        type="date"
+        id="date"
+        formControlName="date"
+        class="form-control"
+        [class.is-invalid]="isFieldInvalid('date')"
+      />
+      <div class="invalid-feedback" *ngIf="isFieldInvalid('date')">
+        {{ getFieldError('date') }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="location" class="form-label">Location *</label>
+      <input
+        type="text"
+        id="location"
+        formControlName="location"
+        class="form-control"
+        placeholder="Enter event location"
+        [class.is-invalid]="isFieldInvalid('location')"
+      />
+      <div class="invalid-feedback" *ngIf="isFieldInvalid('location')">
+        {{ getFieldError('location') }}
+      </div>
+    </div>
+
+    <!-- Guests Section -->
+    <div class="guests-section">
+      <div class="guests-header">
+        <h4>Guests</h4>
+        <button type="button" class="btn btn-outline-primary btn-sm" (click)="addGuest()">
+          + Add Guest
+        </button>
+      </div>
+
+      <div formArrayName="guests" class="guests-list">
+        <div 
+          *ngFor="let guest of guests.controls; let i = index" 
+          [formGroupName]="i" 
+          class="guest-item"
+        >
+          <div class="guest-form">
+            <div class="form-group">
+              <label [for]="'guestName' + i" class="form-label">Name *</label>
+              <input
+                type="text"
+                [id]="'guestName' + i"
+                formControlName="name"
+                class="form-control"
+                placeholder="Guest name"
+                [class.is-invalid]="isGuestFieldInvalid(i, 'name')"
+              />
+              <div class="invalid-feedback" *ngIf="isGuestFieldInvalid(i, 'name')">
+                {{ getGuestFieldError(i, 'name') }}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label [for]="'guestEmail' + i" class="form-label">Email *</label>
+              <input
+                type="email"
+                [id]="'guestEmail' + i"
+                formControlName="email"
+                class="form-control"
+                placeholder="guest@example.com"
+                [class.is-invalid]="isGuestFieldInvalid(i, 'email')"
+              />
+              <div class="invalid-feedback" *ngIf="isGuestFieldInvalid(i, 'email')">
+                {{ getGuestFieldError(i, 'email') }}
+              </div>
+            </div>
+
+
+            <div class="guest-actions">
+              <button 
+                type="button" 
+                class="btn btn-outline-danger btn-sm" 
+                (click)="removeGuest(i)"
+                [disabled]="guests.length <= 1"
+                title="Remove guest"
+              >
+                🗑️
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form Actions -->
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary" [disabled]="eventForm.invalid">
+        {{ isEditMode ? 'Update Event' : 'Add Event' }}
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="onCancel()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

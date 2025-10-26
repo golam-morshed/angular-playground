@@ -174,18 +174,82 @@
       "description": "Electricity bill"
     },
     {
-      "id": "5359",
-      "date": "2025-10-30",
-      "amount": 300,
-      "category": "Bills",
-      "description": "Test"
-    },
-    {
       "date": "2025-10-26",
       "amount": 45,
       "category": "Bills",
       "description": "Movie ticketsbb",
       "id": "6ed5"
+    }
+  ],
+  "events": [
+    {
+      "id": "1",
+      "title": "Company Annual Meeting",
+      "date": "2024-02-15",
+      "location": "Grand Hotel Conference Center",
+      "guests": [
+        {
+          "id": "guest1",
+          "name": "John Smith",
+          "email": "john.smith@company.com"
+        },
+        {
+          "id": "guest2",
+          "name": "Sarah Johnson",
+          "email": "sarah.johnson@company.com"
+        },
+        {
+          "id": "guest3",
+          "name": "Mike Brown",
+          "email": "mike.brown@company.com"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Product Launch Party",
+      "date": "2024-03-20",
+      "location": "Tech Innovation Hub",
+      "guests": [
+        {
+          "id": "guest4",
+          "name": "Emily Davis",
+          "email": "emily.davis@company.com"
+        },
+        {
+          "id": "guest5",
+          "name": "David Wilson",
+          "email": "david.wilson@company.com"
+        },
+        {
+          "id": "guest6",
+          "name": "Lisa Chen",
+          "email": "lisa.chen@company.com"
+        },
+        {
+          "id": "guest7",
+          "name": "Alex Rodriguez",
+          "email": "alex.rodriguez@company.com"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Team Building Workshop",
+      "date": "2024-04-10",
+      "location": "Outdoor Adventure Center",
+      "guests": [
+        {
+          "id": "guest8",
+          "name": "Tom Anderson",
+          "email": "tom.anderson@company.com"
+        },
+        {
+          "id": "guest9",
+          "name": "Maria Garcia",
+          "email": "maria.garcia@company.com"
+        }
+      ]
     }
   ]
 }

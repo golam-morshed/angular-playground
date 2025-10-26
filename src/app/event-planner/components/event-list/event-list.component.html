@@ -1,0 +1,49 @@
+<div class="events-section">
+  <h3>All Events</h3>
+  
+  <div class="table-container" *ngIf="events.length > 0; else noEvents">
+    <table class="events-table">
+      <thead>
+        <tr>
+          <th>Event Title</th>
+          <th>Date</th>
+          <th>Location</th>
+          <th>Guests</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let event of events" class="event-row">
+          <td class="event-title" data-label="Event Title">{{ event.title }}</td>
+          <td class="event-date" data-label="Date">{{ event.date | formatDate }}</td>
+          <td class="event-location" data-label="Location">{{ event.location }}</td>
+          <td class="event-guests" data-label="Guests">
+            <span class="guest-count">{{ event.guests.length }} guest{{ event.guests.length !== 1 ? 's' : '' }}</span>
+          </td>
+          <td class="event-actions" data-label="Actions">
+            <button 
+              class="btn btn-edit" 
+              (click)="onEdit(event)"
+              title="Edit event"
+            >
+              ✏️
+            </button>
+            <button 
+              class="btn btn-delete" 
+              (click)="onDelete(event.id)"
+              title="Delete event"
+            >
+              🗑️
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #noEvents>
+    <div class="no-events">
+      <p>No events found. Create your first event!</p>
+    </div>
+  </ng-template>
+</div>

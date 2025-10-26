@@ -18,6 +18,10 @@ const routes: Routes = [
     path: 'expense-tracker',
     loadChildren: () => import('./expense-tracker/expense-tracker.module').then(m => m.ExpenseTrackerModule)
   },
+  {
+    path: 'event-planner',
+    loadChildren: () => import('./event-planner/event-planner.module').then(m => m.EventPlannerModule)
+  },
   { path: 'custom-directive', component: CustomDirectivesComponent }
 ];
 

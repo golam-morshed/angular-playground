@@ -1,0 +1,23 @@
+<div class="event-planner-container">
+
+  <div class="event-planner-content">
+    <!-- Event Form Section -->
+    <div class="form-section">
+      <app-event-form
+        [event]="selectedEvent"
+        [isEditMode]="isEditMode"
+        (eventSubmit)="onEventSubmit($event)"
+        (cancel)="onCancelForm()"
+      ></app-event-form>
+    </div>
+
+    <!-- Event List Section -->
+    <div class="list-section">
+      <app-event-list
+        [events]="events"
+        (editEvent)="onEditEvent($event)"
+        (deleteEvent)="onDeleteEvent($event)"
+      ></app-event-list>
+    </div>
+  </div>
+</div>
