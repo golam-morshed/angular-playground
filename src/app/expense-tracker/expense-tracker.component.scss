@@ -1,38 +1,38 @@
 .expense-tracker-container {
   max-width: 1600px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   background: #ffffff;
   min-height: 100vh;
 
   @media (max-width: 768px) {
-    padding: 1rem;
+    padding: 0.75rem;
   }
 }
 
 .expense-tracker-header {
   text-align: center;
-  margin-bottom: 3rem;
-  padding: 2rem 0;
+  margin-bottom: 1.5rem;
+  padding: 1rem 0;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
   h1 {
-    margin: 0 0 0.5rem 0;
-    font-size: 2.5rem;
-    font-weight: 700;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    margin: 0 0 0.25rem 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 
     @media (max-width: 768px) {
-      font-size: 2rem;
+      font-size: 1.25rem;
     }
   }
 
   p {
     margin: 0;
-    font-size: 1.1rem;
+    font-size: 0.85rem;
     opacity: 0.9;
     font-weight: 300;
   }
@@ -41,7 +41,7 @@
 .expense-tracker-content {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: 1rem;
   min-height: 70vh;
 
   // Desktop Layout - Side by Side
@@ -51,7 +51,7 @@
 
     .form-section {
       position: sticky;
-      top: 2rem;
+      top: 1rem;
     }
 
     .list-section {
@@ -60,9 +60,9 @@
       
       .expenses-section {
         background: #f8f9fa;
-        padding: 1.5rem;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+        border-radius: 6px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
       }
     }
   }

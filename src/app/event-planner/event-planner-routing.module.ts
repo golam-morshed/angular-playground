@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { EventPlannerComponent } from './event-planner.component';
 
 const routes: Routes = [
-  // { path: '', component: EventPlannerComponent }
+  { path: '', component: EventPlannerComponent }
 ];
 
 @NgModule({
