@@ -1,0 +1,82 @@
+.expense-tracker-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: #ffffff;
+  min-height: 100vh;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+}
+
+.expense-tracker-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  h1 {
+    margin: 0 0 0.5rem 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+  }
+
+  p {
+    margin: 0;
+    font-size: 1.1rem;
+    opacity: 0.9;
+    font-weight: 300;
+  }
+}
+
+.expense-tracker-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  min-height: 70vh;
+
+  // Desktop Layout - Side by Side
+  @media (min-width: 1025px) {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+
+    .form-section {
+      position: sticky;
+      top: 2rem;
+    }
+
+    .list-section {
+      overflow-y: auto;
+      max-height: 70vh;
+      
+      .expenses-section {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+
+  // Mobile Layout - Stacked
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    
+    .form-section {
+      order: 1;
+    }
+    
+    .list-section {
+      order: 2;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+<div class="expense-tracker-container">
+
+
+  <div class="expense-tracker-content">
+    <!-- Form Section -->
+    <div class="form-section">
+      <app-expense-form
+        [expense]="selectedExpense"
+        [isEditMode]="isEditMode"
+        (expenseSubmit)="onExpenseSubmit($event)"
+        (cancel)="onCancelForm()"
+      ></app-expense-form>
+    </div>
+
+    <!-- List Section -->
+    <div class="list-section">
+      <app-expense-list
+        [expenses]="expenses"
+        (editExpense)="onEditExpense($event)"
+        (deleteExpense)="onDeleteExpense($event)"
+      ></app-expense-list>
+    </div>
+  </div>
+</div>

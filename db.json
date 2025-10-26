@@ -110,27 +110,27 @@
   ],
   "availableCourses": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Angular Fundamentals"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "TypeScript Advanced"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "RxJS and Reactive Programming"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Angular State Management"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Web Performance Optimization"
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Angular Testing"
     }
   ],
@@ -149,6 +149,36 @@
         "expiryDate": "12/26",
         "cvv": "1234"
       }
+    }
+  ],
+  "expenses": [
+    {
+      "id": "2",
+      "date": "2024-01-16",
+      "amount": 15,
+      "category": "Transport",
+      "description": "Bus fare"
+    },
+    {
+      "id": "3",
+      "date": "2024-01-17",
+      "amount": 120,
+      "category": "Shopping",
+      "description": "New clothes"
+    },
+    {
+      "date": "2024-01-18",
+      "amount": 45.75,
+      "category": "Entertainment",
+      "description": "Movie ticketsbb",
+      "id": "4"
+    },
+    {
+      "id": "5",
+      "date": "2024-01-19",
+      "amount": 89.99,
+      "category": "Bills",
+      "description": "Electricity bill"
     }
   ]
 }

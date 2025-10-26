@@ -4,7 +4,7 @@ import { UserRegistrationFormComponent } from './user-registration-form/user-reg
 import { CustomDirectivesComponent } from './custom-directives/custom-directives.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/template-driven-form', pathMatch: 'full' },
+  { path: '', redirectTo: '/expense-tracker', pathMatch: 'full' },
   { path: 'template-driven-form', component: UserRegistrationFormComponent },
   {
     path: 'reactive-form',
@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: 'course-registration',
     loadChildren: () => import('./course-registration/course-registration.module').then(m => m.CourseRegistrationModule)
+  },
+  {
+    path: 'expense-tracker',
+    loadChildren: () => import('./expense-tracker/expense-tracker.module').then(m => m.ExpenseTrackerModule)
   },
   { path: 'custom-directive', component: CustomDirectivesComponent }
 ];
