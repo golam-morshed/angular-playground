@@ -1,0 +1,39 @@
+<div class="task-filter-container">
+  <h3>Filter Tasks</h3>
+  
+  <div class="btn-group" role="group">
+    <button 
+      type="button" 
+      class="btn"
+      [class.active]="selectedFilter === 'all'"
+      (click)="onFilterChange('all')"
+    >
+      All
+    </button>
+    <button 
+      type="button" 
+      class="btn"
+      [class.active]="selectedFilter === TaskStatus.PENDING"
+      (click)="onFilterChange(TaskStatus.PENDING)"
+    >
+      Pending
+    </button>
+    <button 
+      type="button" 
+      class="btn"
+      [class.active]="selectedFilter === TaskStatus.ONGOING"
+      (click)="onFilterChange(TaskStatus.ONGOING)"
+    >
+      Ongoing
+    </button>
+    <button 
+      type="button" 
+      class="btn"
+      [class.active]="selectedFilter === TaskStatus.COMPLETED"
+      (click)="onFilterChange(TaskStatus.COMPLETED)"
+    >
+      Completed
+    </button>
+  </div>
+</div>
+

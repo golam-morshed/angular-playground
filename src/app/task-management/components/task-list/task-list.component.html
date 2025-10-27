@@ -1,0 +1,86 @@
+<div class="tasks-section">
+  <h3>Task List</h3>
+  
+  <div class="table-container" *ngIf="tasks.length > 0; else noTasks">
+    <table class="tasks-table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>Created Date</th>
+          <th>Completed Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of tasks" class="task-row">
+          <td class="task-title" data-label="Title">{{ task.title }}</td>
+          <td class="task-description" data-label="Description">{{ task.description }}</td>
+          <td class="task-status" data-label="Status">
+            <span 
+              class="badge"
+              [class.bg-warning]="task.status === TaskStatus.PENDING"
+              [class.bg-info]="task.status === TaskStatus.ONGOING"
+              [class.bg-success]="task.status === TaskStatus.COMPLETED"
+            >
+              {{ task.status | titlecase }}
+            </span>
+          </td>
+          <td class="task-created-date" data-label="Created Date">{{ task.createdDate | formatDate }}</td>
+          <td class="task-completed-date" data-label="Completed Date">
+            {{ task.completedDate ? (task.completedDate | formatDate) : '-' }}
+          </td>
+          <td class="task-actions" data-label="Actions">
+            <button 
+              *ngIf="task.status === TaskStatus.PENDING"
+              class="btn btn-info btn-sm" 
+              (click)="onMarkOngoing(task.id)"
+              title="Mark as ongoing"
+            >
+              Ongoing
+            </button>
+            <button 
+              *ngIf="task.status === TaskStatus.PENDING || task.status === TaskStatus.ONGOING"
+              class="btn btn-success btn-sm" 
+              (click)="onMarkComplete(task.id)"
+              title="Mark as completed"
+            >
+              Complete
+            </button>
+            <button 
+              *ngIf="task.status === TaskStatus.ONGOING"
+              class="btn btn-warning btn-sm" 
+              (click)="onMarkPending(task.id)"
+              title="Mark as pending"
+            >
+              Pending
+            </button>
+            <button 
+              *ngIf="task.status === TaskStatus.COMPLETED"
+              class="btn btn-warning btn-sm" 
+              (click)="onMarkPending(task.id)"
+              title="Mark as pending"
+            >
+              Reopen
+            </button>
+            <button 
+              class="btn btn-danger btn-sm" 
+              (click)="onDelete(task.id)"
+              title="Delete task"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #noTasks>
+    <div class="no-tasks">
+      <p>No tasks found. Create your first task!</p>
+    </div>
+  </ng-template>
+</div>
+

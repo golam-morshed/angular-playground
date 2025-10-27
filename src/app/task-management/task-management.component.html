@@ -1,0 +1,31 @@
+<div class="task-management-container">
+  <!-- Header with purple gradient -->
+  <div class="task-management-header">
+    <h1>Task Management</h1>
+    <p>Create, filter, and manage your tasks in real-time</p>
+  </div>
+
+  <div class="task-management-content">
+    <!-- Task Creator Section -->
+    <div class="creator-section">
+      <app-task-creator></app-task-creator>
+    </div>
+
+    <!-- Filter Section -->
+    <div class="filter-section">
+      <app-task-filter (filterChange)="onFilterChange($event)"></app-task-filter>
+    </div>
+
+    <!-- Task List Section -->
+    <div class="list-section">
+      <app-task-list
+        [tasks]="filteredTasks"
+        (markComplete)="onMarkComplete($event)"
+        (markOngoing)="onMarkOngoing($event)"
+        (markPending)="onMarkPending($event)"
+        (deleteTask)="onDeleteTask($event)"
+      ></app-task-list>
+    </div>
+  </div>
+</div>
+

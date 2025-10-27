@@ -22,6 +22,10 @@ const routes: Routes = [
     path: 'event-planner',
     loadChildren: () => import('./event-planner/event-planner.module').then(m => m.EventPlannerModule)
   },
+  {
+    path: 'task-management',
+    loadChildren: () => import('./task-management/task-management.module').then(m => m.TaskManagementModule)
+  },
   { path: 'custom-directive', component: CustomDirectivesComponent }
 ];
 

@@ -1,0 +1,72 @@
+.task-filter-container {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+
+  h3 {
+    margin-bottom: 1rem;
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+
+  .btn-group {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+
+    .btn {
+      padding: 0.5rem 1rem;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      background-color: #fff;
+      color: #495057;
+      font-size: 0.9rem;
+      font-weight: 400;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background-color: #e9ecef;
+        border-color: #adb5bd;
+      }
+
+      &.active {
+        background-color: #007bff;
+        color: white;
+        border-color: #007bff;
+
+        &:hover {
+          background-color: #0056b3;
+          border-color: #0056b3;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .task-filter-container {
+    padding: 1rem;
+
+    .btn-group {
+      .btn {
+        flex: 1 1 calc(50% - 0.25rem);
+        min-width: 120px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .task-filter-container {
+    .btn-group {
+      .btn {
+        flex: 1 1 100%;
+      }
+    }
+  }
+}
+

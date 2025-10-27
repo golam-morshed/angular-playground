@@ -1,0 +1,49 @@
+<div class="task-creator-container">
+  <h3>Create New Task</h3>
+  
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" appFocusInvalid class="task-form">
+    <!-- Title Field -->
+    <div class="form-group">
+      <label class="form-label" for="title">Title</label>
+      <input 
+        type="text" 
+        id="title"
+        formControlName="title"
+        class="form-control"
+        [class.is-invalid]="isFieldInvalid('title')"
+        placeholder="Enter task title"
+      />
+      <div class="invalid-feedback" *ngIf="isFieldInvalid('title')">
+        {{ getFieldError('title') }}
+      </div>
+    </div>
+
+    <!-- Description Field -->
+    <div class="form-group">
+      <label class="form-label" for="description">Description</label>
+      <textarea 
+        id="description"
+        formControlName="description"
+        class="form-control"
+        [class.is-invalid]="isFieldInvalid('description')"
+        placeholder="Enter task description"
+        rows="3"
+      ></textarea>
+      <div class="invalid-feedback" *ngIf="isFieldInvalid('description')">
+        {{ getFieldError('description') }}
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="form-actions">
+      <button 
+        type="submit" 
+        class="btn btn-primary"
+        [disabled]="taskForm.invalid"
+      >
+        Create Task
+      </button>
+    </div>
+  </form>
+</div>
+
