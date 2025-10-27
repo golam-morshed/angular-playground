@@ -1,7 +1,21 @@
 <div class="tasks-section">
-  <h3>Task List</h3>
+  <div class="header-container">
+    <h3>Task List</h3>
+    <div class="filter-dropdown">
+      <select 
+        class="form-select"
+        [(ngModel)]="selectedFilter"
+        (change)="onFilterChange()"
+      >
+        <option value="all">All Tasks</option>
+        <option [value]="TaskStatus.PENDING">Pending</option>
+        <option [value]="TaskStatus.ONGOING">Ongoing</option>
+        <option [value]="TaskStatus.COMPLETED">Completed</option>
+      </select>
+    </div>
+  </div>
   
-  <div class="table-container" *ngIf="tasks.length > 0; else noTasks">
+  <div class="table-container" *ngIf="filteredTasks.length > 0; else noTasks">
     <table class="tasks-table">
       <thead>
         <tr>
@@ -14,7 +28,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let task of tasks" class="task-row">
+        <tr *ngFor="let task of filteredTasks" class="task-row">
           <td class="task-title" data-label="Title">{{ task.title }}</td>
           <td class="task-description" data-label="Description">{{ task.description }}</td>
           <td class="task-status" data-label="Status">

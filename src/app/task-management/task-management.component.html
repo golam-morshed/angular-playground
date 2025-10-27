@@ -11,15 +11,10 @@
       <app-task-creator></app-task-creator>
     </div>
 
-    <!-- Filter Section -->
-    <div class="filter-section">
-      <app-task-filter (filterChange)="onFilterChange($event)"></app-task-filter>
-    </div>
-
     <!-- Task List Section -->
     <div class="list-section">
       <app-task-list
-        [tasks]="filteredTasks"
+        [tasks]="tasks"
         (markComplete)="onMarkComplete($event)"
         (markOngoing)="onMarkOngoing($event)"
         (markPending)="onMarkPending($event)"

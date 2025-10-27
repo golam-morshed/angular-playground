@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { TaskManagementRoutingModule } from './task-management-routing.module';
 import { TaskManagementComponent } from './task-management.component';
@@ -19,6 +19,7 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    FormsModule,
     TaskManagementRoutingModule,
     SharedModule
   ]

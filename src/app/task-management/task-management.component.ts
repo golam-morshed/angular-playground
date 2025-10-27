@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { Task, TaskStatus } from './models/task.model';
+import { Task } from './models/task.model';
 import { TaskService } from './services/task.service';
 
 @Component({
@@ -11,38 +11,22 @@ import { TaskService } from './services/task.service';
 })
 export class TaskManagementComponent implements OnInit, OnDestroy {
   tasks: Task[] = [];
-  filteredTasks: Task[] = [];
-  currentFilter: TaskStatus | 'all' = 'all';
   private destroy$ = new Subject<void>();
 
   constructor(private taskService: TaskService) {}
 
   ngOnInit(): void {
-    // Subscribe to tasks$ and apply current filter
+    // Subscribe to tasks$
     this.taskService.tasks$.pipe(
       takeUntil(this.destroy$)
     ).subscribe(tasks => {
       this.tasks = tasks;
-      this.applyFilter(this.currentFilter);
     });
   }
 
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
-  }
-
-  onFilterChange(filter: TaskStatus | 'all'): void {
-    this.currentFilter = filter;
-    this.applyFilter(filter);
-  }
-
-  applyFilter(filter: TaskStatus | 'all'): void {
-    if (filter === 'all') {
-      this.filteredTasks = this.tasks;
-    } else {
-      this.filteredTasks = this.tasks.filter(task => task.status === filter);
-    }
   }
 
   onMarkComplete(id: number): void {
