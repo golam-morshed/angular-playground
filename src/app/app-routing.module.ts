@@ -4,7 +4,7 @@ import { UserRegistrationFormComponent } from './user-registration-form/user-reg
 import { CustomDirectivesComponent } from './custom-directives/custom-directives.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/expense-tracker', pathMatch: 'full' },
+  { path: '', redirectTo: '/employee-management/dashboard', pathMatch: 'full' },
   { path: 'template-driven-form', component: UserRegistrationFormComponent },
   {
     path: 'reactive-form',
@@ -25,6 +25,10 @@ const routes: Routes = [
   {
     path: 'task-management',
     loadChildren: () => import('./task-management/task-management.module').then(m => m.TaskManagementModule)
+  },
+  {
+    path: 'employee-management',
+    loadChildren: () => import('./employee-management/employee-management.module').then(m => m.EmployeeManagementModule)
   },
   { path: 'custom-directive', component: CustomDirectivesComponent }
 ];

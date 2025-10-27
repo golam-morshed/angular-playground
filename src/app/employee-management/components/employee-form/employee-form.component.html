@@ -1,0 +1,311 @@
+<div class="employee-form">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+
+      <!-- Loading State -->
+      <div *ngIf="loading" class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-2">Loading employee data...</p>
+      </div>
+
+      <!-- Error Alert -->
+      <div *ngIf="error" class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ error }}
+        <button type="button" class="btn-close" (click)="error = ''" aria-label="Close"></button>
+      </div>
+
+      <!-- Form -->
+      <div class="card shadow-sm" *ngIf="!loading">
+        <div class="card-header bg-primary text-white">
+          <h3 class="text-center mb-0">{{ isEditMode ? 'Edit' : 'Add' }} Employee Form</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+            
+            <!-- Personal Information Section -->
+            <h5 class="border-bottom pb-2 mb-3">Personal Information</h5>
+            
+            <div class="row">
+              <!-- First Name -->
+              <div class="col-md-6 mb-3">
+                <label for="firstName" class="form-label">
+                  First Name <span class="text-danger">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  id="firstName"
+                  class="form-control" 
+                  [class.is-invalid]="isFieldInvalid('firstName')"
+                  formControlName="firstName"
+                  placeholder="Enter first name">
+                <div class="invalid-feedback" *ngIf="isFieldInvalid('firstName')">
+                  {{ getFieldError('firstName') }}
+                </div>
+              </div>
+
+              <!-- Last Name -->
+              <div class="col-md-6 mb-3">
+                <label for="lastName" class="form-label">
+                  Last Name <span class="text-danger">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  id="lastName"
+                  class="form-control" 
+                  [class.is-invalid]="isFieldInvalid('lastName')"
+                  formControlName="lastName"
+                  placeholder="Enter last name">
+                <div class="invalid-feedback" *ngIf="isFieldInvalid('lastName')">
+                  {{ getFieldError('lastName') }}
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- Email -->
+              <div class="col-md-6 mb-3">
+                <label for="email" class="form-label">
+                  Email <span class="text-danger">*</span>
+                </label>
+                <input 
+                  type="email" 
+                  id="email"
+                  class="form-control" 
+                  [class.is-invalid]="isFieldInvalid('email')"
+                  formControlName="email"
+                  placeholder="Enter email address">
+                <div class="invalid-feedback" *ngIf="isFieldInvalid('email')">
+                  {{ getFieldError('email') }}
+                </div>
+              </div>
+
+              <!-- Phone -->
+              <div class="col-md-6 mb-3">
+                <label for="phone" class="form-label">
+                  Phone <span class="text-danger">*</span>
+                </label>
+                <input 
+                  type="tel" 
+                  id="phone"
+                  class="form-control" 
+                  [class.is-invalid]="isFieldInvalid('phone')"
+                  formControlName="phone"
+                  placeholder="Enter phone number">
+                <small class="form-text text-muted">10-15 characters required</small>
+                <div class="invalid-feedback" *ngIf="isFieldInvalid('phone')">
+                  {{ getFieldError('phone') }}
+                </div>
+              </div>
+            </div>
+
+            <!-- Job Information Section -->
+            <h5 class="border-bottom pb-2 mb-3 mt-4">Job Information</h5>
+            
+            <div class="row">
+              <!-- Position -->
+              <div class="col-md-6 mb-3">
+                <label for="position" class="form-label">
+                  Position <span class="text-danger">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  id="position"
+                  class="form-control" 
+                  [class.is-invalid]="isFieldInvalid('position')"
+                  formControlName="position"
+                  placeholder="Enter job position">
+                <div class="invalid-feedback" *ngIf="isFieldInvalid('position')">
+                  {{ getFieldError('position') }}
+                </div>
+              </div>
+
+              <!-- Department -->
+              <div class="col-md-6 mb-3">
+                <label for="department" class="form-label">
+                  Department <span class="text-danger">*</span>
+                </label>
+                <select 
+                  id="department"
+                  class="form-select" 
+                  [class.is-invalid]="isFieldInvalid('department')"
+                  formControlName="department">
+                  <option value="">Select Department</option>
+                  <option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
+                </select>
+                <div class="invalid-feedback" *ngIf="isFieldInvalid('department')">
+                  {{ getFieldError('department') }}
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- Salary -->
+              <div class="col-md-6 mb-3">
+                <label for="salary" class="form-label">
+                  Salary <span class="text-danger">*</span>
+                </label>
+                <div class="input-group">
+                  <span class="input-group-text">$</span>
+                  <input 
+                    type="number" 
+                    id="salary"
+                    class="form-control" 
+                    [class.is-invalid]="isFieldInvalid('salary')"
+                    formControlName="salary"
+                    placeholder="Enter salary amount">
+                </div>
+                <small class="form-text text-muted">Annual salary in USD</small>
+                <div class="text-danger small mt-1" *ngIf="isFieldInvalid('salary')">
+                  {{ getFieldError('salary') }}
+                </div>
+              </div>
+
+              <!-- Hire Date -->
+              <div class="col-md-6 mb-3">
+                <label for="hireDate" class="form-label">
+                  Hire Date <span class="text-danger">*</span>
+                </label>
+                <input 
+                  type="date" 
+                  id="hireDate"
+                  class="form-control" 
+                  [class.is-invalid]="isFieldInvalid('hireDate')"
+                  formControlName="hireDate">
+                <div class="invalid-feedback" *ngIf="isFieldInvalid('hireDate')">
+                  {{ getFieldError('hireDate') }}
+                </div>
+              </div>
+            </div>
+
+            <!-- Address Section -->
+            <h5 class="border-bottom pb-2 mb-3 mt-4">Address Information</h5>
+            
+            <div formGroupName="address">
+              <div class="mb-3">
+                <label for="street" class="form-label">
+                  Street Address <span class="text-danger">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  id="street"
+                  class="form-control" 
+                  [class.is-invalid]="isFieldInvalid('address.street')"
+                  formControlName="street"
+                  placeholder="Enter street address">
+                <div class="invalid-feedback" *ngIf="isFieldInvalid('address.street')">
+                  {{ getFieldError('address.street') }}
+                </div>
+              </div>
+
+              <div class="row">
+                <!-- City -->
+                <div class="col-md-4 mb-3">
+                  <label for="city" class="form-label">
+                    City <span class="text-danger">*</span>
+                  </label>
+                  <input 
+                    type="text" 
+                    id="city"
+                    class="form-control" 
+                    [class.is-invalid]="isFieldInvalid('address.city')"
+                    formControlName="city"
+                    placeholder="Enter city">
+                  <div class="invalid-feedback" *ngIf="isFieldInvalid('address.city')">
+                    {{ getFieldError('address.city') }}
+                  </div>
+                </div>
+
+                <!-- Country -->
+                <div class="col-md-4 mb-3">
+                  <label for="country" class="form-label">
+                    Country <span class="text-danger">*</span>
+                  </label>
+                  <input 
+                    type="text" 
+                    id="country"
+                    class="form-control" 
+                    [class.is-invalid]="isFieldInvalid('address.country')"
+                    formControlName="country"
+                    placeholder="Enter country">
+                  <div class="invalid-feedback" *ngIf="isFieldInvalid('address.country')">
+                    {{ getFieldError('address.country') }}
+                  </div>
+                </div>
+
+                <!-- Zip Code -->
+                <div class="col-md-4 mb-3">
+                  <label for="zipCode" class="form-label">
+                    Zip Code <span class="text-danger">*</span>
+                  </label>
+                  <input 
+                    type="text" 
+                    id="zipCode"
+                    class="form-control" 
+                    [class.is-invalid]="isFieldInvalid('address.zipCode')"
+                    formControlName="zipCode"
+                    placeholder="Enter zip code">
+                  <div class="invalid-feedback" *ngIf="isFieldInvalid('address.zipCode')">
+                    {{ getFieldError('address.zipCode') }}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Skills Section -->
+            <h5 class="border-bottom pb-2 mb-3 mt-4">Skills & Competencies</h5>
+            
+            <div class="mb-3">
+              <label class="form-label">Employee Skills</label>
+              <div formArrayName="skills" class="skills-container">
+                <div *ngFor="let skill of skillsArray.controls; let i = index" class="mb-2">
+                  <div class="input-group">
+                    <input 
+                      type="text" 
+                      class="form-control" 
+                      [formControlName]="i"
+                      [placeholder]="'Skill ' + (i + 1)">
+                    <button 
+                      type="button" 
+                      class="btn btn-outline-danger"
+                      (click)="removeSkill(i)"
+                      [disabled]="skillsArray.length === 1"
+                      title="Remove skill">
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <button 
+                type="button" 
+                class="btn btn-outline-primary btn-sm mt-2"
+                (click)="addSkill()">
+                + Add Skill
+              </button>
+            </div>
+
+            <!-- Form Buttons -->
+            <div class="d-flex gap-2 mt-4">
+              <button 
+                type="submit" 
+                class="btn btn-primary flex-grow-1"
+                [disabled]="employeeForm.invalid || submitting">
+                <span *ngIf="submitting" class="spinner-border spinner-border-sm me-2" role="status"></span>
+                {{ isEditMode ? 'Update Employee' : 'Submit Registration' }}
+              </button>
+              <button 
+                type="button" 
+                class="btn btn-secondary"
+                (click)="cancel()"
+                [disabled]="submitting">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

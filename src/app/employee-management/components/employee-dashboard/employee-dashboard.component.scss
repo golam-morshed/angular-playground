@@ -1,0 +1,238 @@
+.dashboard {
+  // Stats Card
+  .stats-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+    color: white;
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+
+      .stat-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+
+        i {
+          font-size: 2.5rem;
+          color: white;
+        }
+      }
+
+      .stat-details {
+        flex: 1;
+
+        .stat-number {
+          font-size: 3rem;
+          font-weight: 700;
+          margin: 0;
+          line-height: 1;
+        }
+
+        .stat-label {
+          font-size: 1.1rem;
+          margin: 0.5rem 0 0 0;
+          opacity: 0.9;
+        }
+      }
+    }
+
+    @media (max-width: 768px) {
+      padding: 1.5rem;
+
+      .stat-item {
+        .stat-icon {
+          width: 60px;
+          height: 60px;
+
+          i {
+            font-size: 2rem;
+          }
+        }
+
+        .stat-details .stat-number {
+          font-size: 2.5rem;
+        }
+      }
+    }
+  }
+
+  // Modern Cards
+  .modern-card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    background: white;
+
+    .card-header {
+      background: white;
+      border-bottom: 1px solid #e9ecef;
+      padding: 1.25rem 1.5rem;
+
+      .card-title {
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #2d3748;
+
+        i {
+          color: #667eea;
+          margin-right: 0.5rem;
+        }
+      }
+    }
+
+    .card-body {
+      padding: 1.5rem;
+    }
+  }
+
+  // Department List
+  .department-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    .department-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background: #f8f9fa;
+      border-radius: 10px;
+
+      .department-info {
+        flex: 1;
+
+        .department-name {
+          font-weight: 600;
+          color: #2d3748;
+          font-size: 0.95rem;
+          letter-spacing: 0.3px;
+        }
+      }
+
+      .department-count {
+        .count-badge {
+          display: inline-block;
+          min-width: 40px;
+          padding: 0.4rem 0.8rem;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          color: white;
+          border-radius: 20px;
+          font-weight: 600;
+          font-size: 0.9rem;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  // Recent Employees List
+  .recent-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    .recent-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: #f8f9fa;
+      border-radius: 10px;
+
+      .employee-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+
+        i {
+          font-size: 2rem;
+          color: white;
+        }
+      }
+
+      .employee-info {
+        flex: 1;
+        min-width: 0;
+
+        .employee-name {
+          margin: 0 0 0.25rem 0;
+          font-size: 0.95rem;
+          font-weight: 600;
+          color: #2d3748;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .employee-position {
+          margin: 0;
+          font-size: 0.85rem;
+          color: #718096;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+
+      .employee-meta {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.25rem;
+
+        .dept-badge {
+          padding: 0.25rem 0.6rem;
+          background: #667eea;
+          color: white;
+          border-radius: 12px;
+          font-size: 0.7rem;
+          font-weight: 600;
+          letter-spacing: 0.3px;
+        }
+
+        .hire-date {
+          font-size: 0.75rem;
+          color: #a0aec0;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  // Empty State
+  .empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #a0aec0;
+
+    i {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.95rem;
+    }
+  }
+}
+

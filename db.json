@@ -251,5 +251,238 @@
         }
       ]
     }
+  ],
+  "employeeManagement": [
+    {
+      "firstName": "James",
+      "lastName": "Anderson",
+      "email": "james.anderson@techcorp.com",
+      "phone": "555-123-4567",
+      "position": "Senior Software Engineer",
+      "department": "Engineering",
+      "salary": 120000,
+      "hireDate": "2022-03-15",
+      "address": {
+        "street": "123 Tech Boulevard",
+        "city": "San Francisco",
+        "country": "Bangladesh",
+        "zipCode": "94105"
+      },
+      "skills": [
+        "JavaScript",
+        "TypeScript",
+        "Angular",
+        "Node.js",
+        "AWS"
+      ],
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "firstName": "Maria",
+      "lastName": "Rodriguez",
+      "email": "maria.rodriguez@techcorp.com",
+      "phone": "(555) 234-5678",
+      "position": "HR Manager",
+      "department": "Human Resources",
+      "salary": 95000,
+      "hireDate": "2021-07-20",
+      "address": {
+        "street": "456 Corporate Drive",
+        "city": "New York",
+        "country": "USA",
+        "zipCode": "10001"
+      },
+      "skills": [
+        "Recruitment",
+        "Employee Relations",
+        "Performance Management",
+        "Training"
+      ]
+    },
+    {
+      "id": "3",
+      "firstName": "David",
+      "lastName": "Chen",
+      "email": "david.chen@techcorp.com",
+      "phone": "555-345-6789",
+      "position": "Sales Director",
+      "department": "Sales",
+      "salary": 135000,
+      "hireDate": "2020-01-10",
+      "address": {
+        "street": "789 Business Street",
+        "city": "Chicago",
+        "country": "USA",
+        "zipCode": "60601"
+      },
+      "skills": [
+        "Business Development",
+        "Client Relations",
+        "Negotiation",
+        "CRM"
+      ]
+    },
+    {
+      "id": "4",
+      "firstName": "Sarah",
+      "lastName": "Mitchell",
+      "email": "sarah.mitchell@techcorp.com",
+      "phone": "(555) 456-7890",
+      "position": "Marketing Manager",
+      "department": "Marketing",
+      "salary": 98000,
+      "hireDate": "2022-09-05",
+      "address": {
+        "street": "321 Innovation Ave",
+        "city": "Austin",
+        "country": "USA",
+        "zipCode": "78701"
+      },
+      "skills": [
+        "Digital Marketing",
+        "SEO",
+        "Content Strategy",
+        "Analytics"
+      ]
+    },
+    {
+      "id": "5",
+      "firstName": "Robert",
+      "lastName": "Johnson",
+      "email": "robert.johnson@techcorp.com",
+      "phone": "555-567-8901",
+      "position": "Financial Analyst",
+      "department": "Finance",
+      "salary": 85000,
+      "hireDate": "2023-02-14",
+      "address": {
+        "street": "654 Finance Plaza",
+        "city": "Boston",
+        "country": "USA",
+        "zipCode": "02101"
+      },
+      "skills": [
+        "Financial Modeling",
+        "Data Analysis",
+        "Excel",
+        "Forecasting"
+      ]
+    },
+    {
+      "id": "6",
+      "firstName": "Emily",
+      "lastName": "White",
+      "email": "emily.white@techcorp.com",
+      "phone": "(555) 678-9012",
+      "position": "DevOps Engineer",
+      "department": "Engineering",
+      "salary": 115000,
+      "hireDate": "2023-06-01",
+      "address": {
+        "street": "987 Cloud Lane",
+        "city": "Seattle",
+        "country": "USA",
+        "zipCode": "98101"
+      },
+      "skills": [
+        "Docker",
+        "Kubernetes",
+        "CI/CD",
+        "Terraform",
+        "AWS"
+      ]
+    },
+    {
+      "id": "7",
+      "firstName": "Michael",
+      "lastName": "Brown",
+      "email": "michael.brown@techcorp.com",
+      "phone": "555-789-0123",
+      "position": "Operations Manager",
+      "department": "Operations",
+      "salary": 105000,
+      "hireDate": "2021-11-18",
+      "address": {
+        "street": "147 Efficiency Road",
+        "city": "Denver",
+        "country": "USA",
+        "zipCode": "80201"
+      },
+      "skills": [
+        "Process Optimization",
+        "Project Management",
+        "Supply Chain",
+        "Lean"
+      ]
+    },
+    {
+      "id": "8",
+      "firstName": "Jessica",
+      "lastName": "Taylor",
+      "email": "jessica.taylor@techcorp.com",
+      "phone": "(555) 890-1234",
+      "position": "UX Designer",
+      "department": "Engineering",
+      "salary": 92000,
+      "hireDate": "2024-01-15",
+      "address": {
+        "street": "258 Design Street",
+        "city": "Los Angeles",
+        "country": "USA",
+        "zipCode": "90001"
+      },
+      "skills": [
+        "UI/UX Design",
+        "Figma",
+        "User Research",
+        "Prototyping",
+        "Wireframing"
+      ]
+    },
+    {
+      "id": "9",
+      "firstName": "Christopher",
+      "lastName": "Davis",
+      "email": "christopher.davis@techcorp.com",
+      "phone": "555-901-2345",
+      "position": "Account Executive",
+      "department": "Sales",
+      "salary": 88000,
+      "hireDate": "2024-03-22",
+      "address": {
+        "street": "369 Commerce Blvd",
+        "city": "Miami",
+        "country": "USA",
+        "zipCode": "33101"
+      },
+      "skills": [
+        "Sales Strategy",
+        "Client Management",
+        "Salesforce",
+        "Presentation"
+      ]
+    },
+    {
+      "id": "24ac",
+      "firstName": "Golam",
+      "lastName": "Morshed",
+      "email": "golamdotmorshed@gmail.com",
+      "phone": "1231231231",
+      "position": "Lead Engineer",
+      "department": "Engineering",
+      "salary": 2000,
+      "hireDate": "2025-10-27",
+      "address": {
+        "street": "Zahidur rahman road",
+        "city": "Khulna",
+        "country": "Australia",
+        "zipCode": "9100"
+      },
+      "skills": [
+        "Angular",
+        "React"
+      ]
+    }
   ]
 }

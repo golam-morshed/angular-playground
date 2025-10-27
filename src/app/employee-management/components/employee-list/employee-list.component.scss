@@ -1,0 +1,41 @@
+.employee-list {
+  .card {
+    background: white;
+  }
+
+  .card-header {
+    font-weight: 600;
+  }
+
+  .employee-row {
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: rgba(102, 126, 234, 0.05);
+    }
+  }
+
+  .btn-group {
+    gap: 0.25rem;
+    
+    .btn {
+      padding: 0.25rem 0.5rem;
+    }
+  }
+
+  .input-group-text {
+    background-color: white;
+    border-right: none;
+  }
+
+  .form-control {
+    border-left: none;
+    
+    &:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    }
+  }
+}
+

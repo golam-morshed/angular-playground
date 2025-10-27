@@ -1,0 +1,92 @@
+<div class="dashboard">
+  <!-- Loading State -->
+  <div *ngIf="loading" class="text-center py-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="mt-2">Loading dashboard data...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error && !loading" class="alert alert-danger" role="alert">
+    {{ error }}
+  </div>
+
+  <!-- Dashboard Content -->
+  <div *ngIf="!loading && !error">
+    <!-- Stats Card -->
+    <div class="stats-card">
+      <div class="stat-item">
+        <div class="stat-icon bg-gradient-primary">
+          <i class="bi bi-people-fill"></i>
+        </div>
+        <div class="stat-details">
+          <h2 class="stat-number">{{ totalEmployees }}</h2>
+          <p class="stat-label">Total Employees</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4 mt-3">
+      <!-- Department Breakdown -->
+      <div class="col-lg-6">
+        <div class="card modern-card">
+          <div class="card-header">
+            <h5 class="card-title">
+              <i class="bi bi-diagram-3"></i> Department Distribution
+            </h5>
+          </div>
+          <div class="card-body">
+            <div *ngIf="departmentStats.length > 0" class="department-list">
+              <div *ngFor="let stat of departmentStats" class="department-item">
+                <div class="department-info">
+                  <span class="department-name">{{ stat.department | uppercase }}</span>
+                </div>
+                <div class="department-count">
+                  <span class="count-badge">{{ stat.count }}</span>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="departmentStats.length === 0" class="empty-state">
+              <i class="bi bi-inbox"></i>
+              <p>No department data available</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Hires -->
+      <div class="col-lg-6">
+        <div class="card modern-card">
+          <div class="card-header">
+            <h5 class="card-title">
+              <i class="bi bi-clock-history"></i> Recent Hires
+            </h5>
+          </div>
+          <div class="card-body">
+            <div *ngIf="recentEmployees.length > 0" class="recent-list">
+              <div *ngFor="let employee of recentEmployees" class="recent-item">
+                <div class="employee-avatar">
+                  <i class="bi bi-person-circle"></i>
+                </div>
+                <div class="employee-info">
+                  <h6 class="employee-name">{{ employee.firstName | titlecase }} {{ employee.lastName | titlecase }}</h6>
+                  <p class="employee-position">{{ employee.position | titlecase }}</p>
+                </div>
+                <div class="employee-meta">
+                  <span class="dept-badge">{{ employee.department | uppercase }}</span>
+                  <span class="hire-date">{{ employee.hireDate | date:'MMM d' }}</span>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="recentEmployees.length === 0" class="empty-state">
+              <i class="bi bi-inbox"></i>
+              <p>No recent hires</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

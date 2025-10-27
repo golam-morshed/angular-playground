@@ -1,0 +1,138 @@
+.employee-management-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 1rem;
+  background: #ffffff;
+  min-height: 100vh;
+
+  @media (max-width: 768px) {
+    padding: 0.75rem;
+  }
+}
+
+.employee-management-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  h1 {
+    margin: 0 0 0.5rem 0;
+    font-size: 2rem;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+
+    @media (max-width: 768px) {
+      font-size: 1.5rem;
+    }
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.95rem;
+    opacity: 0.9;
+    font-weight: 400;
+
+    @media (max-width: 768px) {
+      font-size: 0.85rem;
+    }
+  }
+}
+
+.navigation-section {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.navigation-tabs {
+  flex: 1;
+
+  .nav-tabs {
+    border-bottom: 2px solid #dee2e6;
+
+    .nav-item {
+      margin-bottom: -2px;
+
+      .nav-link {
+        color: #6c757d;
+        border: none;
+        border-bottom: 2px solid transparent;
+        padding: 0.75rem 1.25rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+
+        &:hover {
+          color: #667eea;
+          border-bottom-color: #667eea;
+          background-color: transparent;
+        }
+
+        &.active {
+          color: #667eea;
+          background-color: transparent;
+          border-bottom: 2px solid #667eea;
+        }
+
+        @media (max-width: 768px) {
+          padding: 0.5rem 0.75rem;
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}
+
+.add-button-container {
+  display: flex;
+  align-items: center;
+  padding-bottom: 0.5rem;
+
+  .btn {
+    white-space: nowrap;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    i {
+      margin-right: 0.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding-bottom: 0;
+    
+    .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}
+
+.employee-management-content {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  min-height: 60vh;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+}
+

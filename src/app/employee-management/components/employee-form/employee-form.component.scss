@@ -1,0 +1,70 @@
+.employee-form {
+  .card {
+    border-radius: 10px;
+    background: white;
+  }
+
+  .card-header {
+    font-weight: 600;
+  }
+
+  .border-bottom {
+    border-bottom: 2px solid #dee2e6 !important;
+  }
+
+  .form-label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-text {
+    font-size: 0.875rem;
+  }
+
+  .text-danger {
+    color: #dc3545;
+  }
+
+  .gap-2 {
+    gap: 0.5rem;
+  }
+
+  .skills-container {
+    .input-group {
+      .btn-outline-danger {
+        font-size: 0.875rem;
+      }
+    }
+  }
+
+  .btn-outline-primary {
+    &:hover {
+      background-color: #667eea;
+      border-color: #667eea;
+    }
+  }
+
+  .btn-primary {
+    background-color: #667eea;
+    border-color: #667eea;
+
+    &:hover {
+      background-color: #5568d3;
+      border-color: #5568d3;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .employee-form {
+    .d-flex.gap-2 {
+      flex-direction: column;
+      
+      .btn {
+        width: 100%;
+      }
+    }
+  }
+}
+
